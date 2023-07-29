@@ -17,7 +17,7 @@ services:
     ports:
       - '6379:6379'
   app:
-    #image: registry.digitalocean.com/container-registry-name-here/backend:latest # TODO: fix this, choose registry name
+    image: registry.digitalocean.com/parterre-cr/backend:latest
     build:
       context: .
       dockerfile: docker/backend.Dockerfile
