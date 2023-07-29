@@ -1,0 +1,66 @@
+name: Deploy to DigitalOcean
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install docker-compose
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DO_PERSONAL_ACCESS_TOKEN }}
+
+      - name: Log in to DO Container Registry
+        run: doctl registry login --expiry-seconds 600
+
+      - name: Build and push Docker images
+        run: docker-compose build && docker-compose push
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Copy docker-compose.yml
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.DO_DROPLET_IP }}
+          username: ${{ secrets.DO_DROPLET_USERNAME }}
+          key: ${{ secrets.DO_DROPLET_SSH_KEY }}
+          source: docker-compose.yml
+          target: deploy/
+
+      - name: SSH into DigitalOcean Droplet and deploy
+        uses: appleboy/ssh-action@master
+        with:
+            host: ${{ secrets.DO_DROPLET_IP }}
+            username: ${{ secrets.DO_DROPLET_USERNAME }}
+            key: ${{ secrets.DO_DROPLET_SSH_KEY }}
+            script: |
+              doctl registry login \
+              && docker compose -f deploy/docker-compose.yml pull \
+              && docker compose --env-file deploy/.env -f deploy/docker-compose.yml up -d \
+              && doctl registry garbage-collection start --include-untagged-manifests --force \
+              && docker compose -f deploy/docker-compose.yml exec webserver nginx -s reload \
+              && docker image prune -a -f
+
+      - name: Telegram notification
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            Deploy successful: ${{ github.event.commits[0].message }}
