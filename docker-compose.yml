@@ -21,7 +21,7 @@ services:
     build:
       context: .
       dockerfile: docker/backend.Dockerfile
-    command: sh ./scripts/gunicorn.sh
+    command: gunicorn core.wsgi:application --bind 0.0.0.0:8000
     restart: always
     container_name: app
     environment:
