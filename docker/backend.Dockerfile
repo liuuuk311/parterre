@@ -12,5 +12,8 @@ COPY web/requirements.txt .
 RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt && pip install gunicorn
 COPY web/docker-entrypoint.sh ./docker-entrypoint.sh
 COPY web .
+
+RUN chmod +x ./docker-entrypoint.sh
+
 EXPOSE 8000
-ENTRYPOINT ["./docker-entrypoint.sh"]
+ENTRYPOINT ["sh", "./docker-entrypoint.sh"]
