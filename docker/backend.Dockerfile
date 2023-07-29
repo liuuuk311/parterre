@@ -11,4 +11,4 @@ WORKDIR /web
 COPY web/requirements.txt .
 RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt && pip install gunicorn
 COPY web .
-RUN chmod +x web/scripts/gunicorn.sh
+RUN chmod +x scripts/gunicorn.sh
