@@ -1,0 +1,10 @@
+<{% if href %}a href="{{ href }}"{% else %}button{% endif %} {% if submit %} type="submit" {% endif %}{% if endpoint and target and method and swap %}hx-{{ method }}="{{ endpoint }}" hx-target="{{ target }}" hx-swap="{{ swap }}" hx-trigger="{{ trigger|default:"click" }}" hx-swap-oob="{{ swap_oob|default:"false" }}"{% endif %} {% if id %}id="{{ id }}"{% endif %} class="{{ btn_css }}">
+    {% if icon == 'add' and label %}
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"  stroke="currentColor" class="w-5 h-5 mx-1" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+        <span class="mx-1 hidden md:flex">{{ label }}</span>
+    {% elif label %}
+        {{ label }}
+    {% endif %}
+</{% if href %}a{% else %}button{% endif %}>

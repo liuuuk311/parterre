@@ -1,0 +1,47 @@
+{% extends 'utils/base_app.html' %}
+{% load static tailwind_tags i18n %}
+
+{% block title %}
+    {{ object.stage_name }} | Parterre
+{% endblock %}
+
+
+{% block content %}
+    {{ block.super }}
+    <div class="mx-auto flex flex-wrap items-center">
+
+        <img alt="{{ object.stage_name }}"
+             class="lg:w-1/2 w-full lg:h-full lg:max-h-[32rem] h-auto object-cover object-center rounded-lg"
+             src="{% if object.image %}{{ object.image.url }}{% else %}https://placehold.co/600x400{% endif %}">
+        <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+            <h2 class="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
+            <h1 class="text-gray-900 text-2xl md:text-4xl title-font font-extrabold mb-1">{{ object.stage_name }}</h1>
+            <div class="flex mb-4">
+                {% include "artists/partials/review_stars.html" %}
+                <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
+                    {% include "artists/partials/other_profiles.html" %}
+                </span>
+            </div>
+            <p class="leading-relaxed mb-6">{{ object.bio|capfirst }}</p>
+            {% include "artists/partials/weekly_score_chart.html" %}
+            <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
+
+            </div>
+            {% if object in user.label.artists.all %}
+                <p>Already in your roaster</p>
+            {% elif user.label.slots_available == 0 %}
+                <p>Buy new slot</p>
+            {% else %}
+            <div class="flex justify-between items-center" id="action">
+                <span class="title-font font-medium text-2xl text-gray-900">
+                    {{ object.current_price }} PIT
+                </span>
+                {% translate "Add to your label" as btn_label %}
+                {% url "buy-artist" object.id as endpoint %}
+                {% include "utils/buttons/primary_button.html" with endpoint=endpoint method="post" target="#action" swap="innerHTML" label=btn_label %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% include "artists/partials/top_tracks.html" %}
+{% endblock %}

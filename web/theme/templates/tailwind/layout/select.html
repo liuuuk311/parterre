@@ -1,0 +1,10 @@
+{% load crispy_forms_filters %}
+{% load l10n %}
+
+<div class="relative">
+<select class="{% if field.errors %}border border-red-500 {% endif %}block w-full pl-4 pr-8 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-lg dark:bg-slate-700 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring placeholder-gray-400/70" name="{{ field.html_name }}" {{ field.field.widget.attrs|flatatt }}>
+    {% for value, label in field.field.choices %}
+        {% include "tailwind/layout/select_option.html" with value=value label=label %}
+    {% endfor %}
+</select>
+</div>

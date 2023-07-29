@@ -1,0 +1,34 @@
+{% extends 'utils/base_app.html' %}
+{% load static tailwind_tags tailwind_filters i18n %}
+
+{% block title %}
+    {% translate "Dashboard" %}
+{% endblock %}
+
+
+{% block content %}
+    {{ block.super }}
+    <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl capitalize font-extrabold text-gray-700 dark:text-white my-8">{% translate "Well done!" %}</h1>
+
+            <div class="mt-2">
+                <h2 class="text-2xl uppercase font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">
+                    {{ user.label.name }} {% translate "is now ready. You can start to hire new artists!" %}
+                </h2>
+                <p class="my-4 text-gray-600 dark:text-gray-300">
+                    {% translate "You can use PITs (Parterre's tokens) to bring artits into your roster." %}
+                </p>
+                <p class="my-4 text-gray-600 dark:text-gray-300">
+                    {% translate "The performance of the artists you hired, we'll influence your PIT wallet." %}
+                </p>
+            </div>
+
+
+            <div class="flex items-center justify-end mt-12">
+                {% translate "Continue" as continue_label %}
+                {% url 'dashboard' as href %}
+                {% include "utils/buttons/primary_button.html" with label=continue_label href=href %}
+            </div>
+    </div>
+
+{% endblock %}

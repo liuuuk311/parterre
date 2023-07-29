@@ -1,0 +1,13 @@
+Django~=4.1.7
+django-environ==0.10.0
+psycopg2-binary~=2.9.5
+django-tailwind==3.5.0
+django_widget_tweaks~=1.4.12
+crispy-tailwind~=0.5.0
+pillow~=9.4.0
+django-storages~=1.13.2
+boto3==1.26.101
+celery~=5.2.7
+redis~=4.5.3
+requests~=2.28.2
+svgwrite~=1.4.3

@@ -1,0 +1,32 @@
+{% load static tailwind_tags i18n %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}" class="{{ user.preferred_theme }}">
+	<head>
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% tailwind_css %}
+        {% block head %}
+        {% endblock %}
+	</head>
+
+	<body class="dark:bg-slate-800" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+        <div x-data="{ showTokenModal: false }">
+            {% block before_content %}
+            {% endblock %}
+            <div class="container px-6 py-4 mx-auto">
+                {% block content %}
+                {% endblock %}
+            </div>
+            {% block after_content %}
+            {% endblock %}
+        </div>
+        {% block scripts %}
+        {% endblock %}
+    </body>
+</html>

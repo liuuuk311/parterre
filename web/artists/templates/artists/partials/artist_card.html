@@ -1,0 +1,10 @@
+<a href="{% url 'artist-detail' artist.pk %}" class="w-64 max-w-lg overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+        <img class="object-cover object-center w-full h-56" src="{% if artist.image %}{{ artist.image.url}}{% else %}https://placehold.co/600x400{% endif %}" alt="{{ artist.stage_name }}">
+
+    <div class="px-6 py-4">
+        {% with artist.get_percentage as percentage %}
+            <h3 class="md:text-2xl text-xl font-extrabold {% if percentage > 0 %}text-green-600{% else %}text-red-500{% endif %}">{{ percentage }}%</h3>
+        {% endwith %}
+        <h1 class="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white">{{ artist.stage_name }}</h1>
+    </div>
+</a>

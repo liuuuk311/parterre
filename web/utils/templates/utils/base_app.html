@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static tailwind_tags i18n %}
+
+{% block before_content %}
+    {% include 'utils/navbar/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    {% include "wallet/token_modal.html" %}
+{% endblock %}
+
+{% block after_content %}
+    {% include 'utils/footer/footer.html' %}
+{% endblock %}
+
+{% block scripts %}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.11.1/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/htmx.org@1.8.5"></script>
+{% endblock %}

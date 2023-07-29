@@ -1,0 +1,17 @@
+{% extends 'utils/base_app.html' %}
+{% load static tailwind_tags i18n %}
+
+{% block title %}
+    {% translate "Dashboard" %}
+{% endblock %}
+
+
+{% block content %}
+    {{ block.super }}
+    {% if user.has_label %}
+        {% include "dashboard/your_label.html" %}
+        {% include "dashboard/trending_artists.html" %}
+        {% include "dashboard/trending_genres.html" %}
+        {% include "dashboard/your_friends.html" %}
+    {% endif %}
+{% endblock %}

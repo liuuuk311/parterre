@@ -1,0 +1,12 @@
+{% extends 'utils/base_app.html' %}
+{% load static tailwind_tags i18n %}
+
+{% block title %}
+    Parterre
+{% endblock %}
+
+
+{% block content %}
+    {% include "parterre/partials/hero.html" %}
+    {% include "parterre/partials/how_it_works.html" %}
+{% endblock %}

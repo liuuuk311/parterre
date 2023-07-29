@@ -1,0 +1,19 @@
+{% extends "registration/_form_container.html" %}
+{% load i18n tailwind_filters %}
+
+{% block form_title %}
+    {% translate "Welcome" %}
+{% endblock %}
+
+{% block form_content %}
+    <div class="my-4">
+    </div>
+    {{ form|crispy }}
+    <div class="flex items-center justify-end mt-6">
+        {% translate "Sign Up" as button_label %}
+        {% include "utils/buttons/primary_button.html" with label=button_label submit=True %}
+    </div>
+    <p class="mt-6 text-gray-600 dark:text-gray-200 hover:text-gray-500 text-center">
+        {% translate "Already registred?" %} <a href="{% url 'login' %}" class="text-blue-900 font-medium">{% translate "Login here" %}</a>
+    </p>
+{% endblock %}

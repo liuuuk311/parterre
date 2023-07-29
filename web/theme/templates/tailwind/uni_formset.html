@@ -1,0 +1,23 @@
+{% load i18n %}
+{% with formset.management_form as form %}
+    {% include 'tailwind/uni_form.html' %}
+{% endwith %}
+{% for form in formset %}
+    <div class="{% if form.wrapper_css %}{{ form.wrapper_css }}{% endif %}">
+        {% include 'tailwind/uni_form.html' %}
+        {% if form.htmx_delete %}
+        <span class="flex items-center">
+            <button
+                    hx-delete="{% url form.htmx_delete form.instance.pk %}"
+                    hx-swap="delete"
+                    hx-target="closest div"
+                    class="rounded-lg px-4 py-2 font-medium text-gray-600 transition-colors duration-200 sm:px-6 dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </span>
+        {% endif %}
+    </div>
+{% endfor %}

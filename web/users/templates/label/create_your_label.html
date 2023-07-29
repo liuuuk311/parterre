@@ -1,0 +1,35 @@
+{% extends 'utils/base_app.html' %}
+{% load static tailwind_tags tailwind_filters i18n %}
+
+{% block title %}
+    {% translate "Dashboard" %}
+{% endblock %}
+
+
+{% block content %}
+    {{ block.super }}
+    <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl capitalize font-extrabold text-gray-700 dark:text-white my-8">{% translate "Welcome to Parterre" %}</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="mt-2">
+                <h2 href="#"
+                    class="text-2xl uppercase font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">
+                    {% translate "Create your record label" %}
+                </h2>
+                <p class="my-4 text-gray-600 dark:text-gray-300">
+                    {% translate "Once you created your record label, you're talent scout adventure will begin" %}
+                </p>
+                {{ form|crispy }}
+            </div>
+
+
+            <div class="flex items-center justify-end mt-12">
+                {% translate "Create new label" as create_new_label %}
+                {% include "utils/buttons/primary_button.html" with label=create_new_label submit=True %}
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

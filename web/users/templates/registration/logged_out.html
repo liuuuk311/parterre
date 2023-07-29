@@ -1,0 +1,12 @@
+{% extends "registration/_form_container.html" %}
+{% load tailwind_filters i18n crispy_forms_tags %}
+
+{% block form_title %}
+{% translate "See you soon" %}
+{% endblock %}
+
+{% block form_paragraphs %}
+<p class="mb-8 text-center text-gray-500 dark:text-gray-400">
+    {% translate "You are now logged out." %}
+</p>
+{% endblock %}

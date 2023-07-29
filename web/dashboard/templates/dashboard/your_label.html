@@ -1,0 +1,33 @@
+{% load i18n utils %}
+<div class="mx-auto max-w-4xl px-8 py-4 my-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+    <div class="mt-2">
+        <h2 href="#" class="text-3xl capitalize font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">
+            {{ user.label.name }}
+        </h2>
+        <p class="mt-2 mb-16 text-gray-600 dark:text-gray-300">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora expedita dicta totam aspernatur doloremque. Excepturi iste iusto eos enim reprehenderit nisi, accusamus delectus nihil quis facere in modi ratione libero!
+        </p>
+
+        <div class="flex overflow-x-scroll pb-10 -ml-6 -mr-6 md:-ml-20 md:-mr-12 lg:ml-0 hide-scroll-bar">
+            <div class="flex flex-nowrap gap-x-8 pl-6 pr-6 md:pl-20 lg:pl-0">
+            {% for artist in user.label.artists.all %}
+                {% include "artists/partials/artist_card.html" with artist=artist %}
+            {% endfor %}
+
+            {% for slot in user.label.slots_available|times %}
+                <div class="w-64 max-w-lg overflow-hidden bg-gray-200 rounded-lg shadow-lg dark:bg-gray-700">
+                    <div class="px-6 py-4">
+                        <h1 class="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white">Slot Available</h1>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+
+
+    <div class="flex items-center justify-end mt-12">
+{#        {% translate "Create new label" as create_new_label %}#}
+{#        {% include "utils/buttons/primary_button.html" with label=create_new_label href="#" %}#}
+    </div>
+</div>

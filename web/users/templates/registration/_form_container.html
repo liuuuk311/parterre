@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static widget_tweaks %}
+
+{% block content %}
+<div class="grid h-screen place-items-center px-4 md:px-0">
+    <div class="w-full max-w-xl mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-slate-800">
+        <div class="py-8 px-4 md:px-12">
+            <a class="flex justify-center mx-auto" href="{% url 'home' %}">
+                <img class="w-auto h-12" src="{% static 'logo.png' %}" alt="Parterre Logo">
+            </a>
+
+            <h3 class="my-5 text-3xl font-medium text-center text-black dark:text-gray-200">
+                {% block form_title %}
+                {% endblock %}
+            </h3>
+
+            <div class="max-w-md mx-auto ">
+                {% block form_paragraphs %}
+                {% endblock %}
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+                {% block form_content %}
+                {% endblock %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
