@@ -22,6 +22,7 @@ services:
       context: .
       dockerfile: docker/backend.Dockerfile
     restart: always
+    command: python manage.py runserver 0.0.0.0:8000
     container_name: app
     environment:
       - POSTGRES_NAME=${POSTGRES_NAME}
