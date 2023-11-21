@@ -2,7 +2,8 @@ version: '3.9'
 
 services:
   db:
-    image: postgres:14
+    image: postgres:15.3-alpine3.18
+    restart: always
     ports:
       - "5432:5432"
     volumes:
@@ -12,7 +13,7 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
   redis:
-    restart: unless-stopped
+    restart: always
     image: redis:6.2-alpine
     ports:
       - '6379:6379'
