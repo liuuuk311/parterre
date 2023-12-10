@@ -62,7 +62,7 @@ jobs:
             username: ${{ secrets.DO_DROPLET_USERNAME }}
             key: ${{ secrets.DO_DROPLET_SSH_KEY }}
             script: |
-              doctl registry login --expire-seconds 600 \
+              doctl registry login --expiry-seconds 600 \
               && docker compose stop \
               && docker compose -f deploy/docker-compose.yml pull \
               && docker compose --env-file deploy/.env -f deploy/docker-compose.yml up -d \
