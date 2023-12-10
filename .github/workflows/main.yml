@@ -38,7 +38,7 @@ jobs:
         uses: appleboy/scp-action@v0.1.4
         env:
           DO_DROPLET_SSH_KEY: ${{ secrets.DO_DROPLET_SSH_KEY }}
-          run: echo "$DO_DROPLET_SSH_KEY"
+          run: echo $DO_DROPLET_SSH_KEY
         with:
           host: ${{ secrets.DO_DROPLET_IP }}
           username: ${{ secrets.DO_DROPLET_USERNAME }}
