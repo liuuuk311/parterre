@@ -12,7 +12,7 @@ class Playlist(models.Model):
     tracks = models.ManyToManyField(Track)
 
     def __str__(self):
-        return self.name
+        return self.name or "No name yet"
 
     @property
     def spotify_id(self):
