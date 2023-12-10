@@ -8,8 +8,11 @@ from artists.models import Track
 class Playlist(models.Model):
     spotify_url = models.URLField(max_length=256)
     name = models.CharField(max_length=256, null=True, blank=True, default=None)
-    followers = models.IntegerField()
+    followers = models.IntegerField(null=True, blank=True, default=None)
     tracks = models.ManyToManyField(Track)
+
+    def __str__(self):
+        return self.name
 
     @property
     def spotify_id(self):

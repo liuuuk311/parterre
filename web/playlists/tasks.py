@@ -1,6 +1,6 @@
 from celery import shared_task
 
-from artists.models import Track
+from artists.models import Artist
 from playlists.models import Playlist
 from spotify.clients import SpotifyAPI, SpotifyPartnerAPI
 
@@ -20,8 +20,6 @@ def import_playlist_data(playlist_ids):
         playlist.tracks.clear()
 
         for item in data['tracks']['items']:
-            track = Track.objects.filter(spotify_id=item['track']['id']).first()
-            if not track:
-                continue
-
-            playlist.tracks.add(track)
+            artist_url = f"https://open.spotify.com/artist/{item['track']['artists'][0]['id']}"
+            artist, _ = Artist.objects.get_or_create(spotify_url=artist_url)
+            artist.save()

@@ -17,7 +17,7 @@ def restrict_number_of_users_per_artist(value):
 class Artist(UUIDModel, TimestampedModel):
     spotify_url = models.URLField(max_length=256)
     image = models.ImageField(null=True, blank=True, default=None)
-    stage_name = models.CharField(max_length=256, null=None, blank=True, default=None)
+    stage_name = models.CharField(max_length=256, null=True, blank=True, default=None)
     bio = models.TextField(blank=True, null=True)
     verified_at = models.DateTimeField(
         "Verified at", default=None, blank=True, null=True
