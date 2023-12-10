@@ -130,7 +130,7 @@ class Track(UUIDModel):
 
 class TrackPopularity(models.Model):
     spotify_popularity = models.IntegerField()
-    spotify_plays = models.IntegerField()
+    spotify_plays = models.BigIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     track = models.ForeignKey(
         Track, null=False, related_name="popularity_history", on_delete=models.CASCADE
