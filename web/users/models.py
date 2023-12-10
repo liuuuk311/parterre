@@ -39,7 +39,7 @@ class Wallet(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='wallet'
     )
-    balance = models.PositiveIntegerField(default=0)
+    balance = models.PositiveIntegerField(default=10000)
 
     def sell(
         self, amount: int, notes: Optional[str] = None, artist: Optional[Artist] = None
