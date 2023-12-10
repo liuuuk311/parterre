@@ -60,8 +60,7 @@ def import_top_tracks(artist_ids):
     for artist in Artist.objects.filter(id__in=artist_ids):
         data = client.get_artists_top_tracks(artist.spotify_id)
         for track_data in data.get('tracks'):
-            track = Track(name=track_data.get('name'), spotify_id=track_data.get('id'))
-            track.save()
+            track, _ = Track.objects.get_or_create(name=track_data.get('name'), spotify_id=track_data.get('id'))
             artist_spotify_names = [a.get('name') for a in track_data.get('artists')]
             artists = Artist.objects.filter(stage_name__in=artist_spotify_names)
             track.artists.add(*list(artists))
