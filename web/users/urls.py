@@ -5,7 +5,7 @@ from .views import (
     CustomLoginView,
     SignUpView,
     CreateRecordLabelView,
-    RecordLabelInfoView,
+    RecordLabelInfoView, UserProfileView,
 )
 
 urlpatterns = [
@@ -38,4 +38,5 @@ urlpatterns = [
         views.PasswordResetCompleteView.as_view(),
         name="password_reset_complete",
     ),
+    path("user/profile", UserProfileView.as_view(), name="profile")
 ]

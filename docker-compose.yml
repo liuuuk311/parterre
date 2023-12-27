@@ -46,6 +46,7 @@ services:
       - SPOTIFY_DC_COOKIE=${SPOTIFY_DC_COOKIE}
     volumes:
       - static_volume:/web/staticfiles/
+      - media:/web/media/
     expose:
       - 8000
     ports:
@@ -59,6 +60,7 @@ services:
     volumes:
       - ./nginx/:/etc/nginx/conf.d/:ro
       - static_volume:/web/staticfiles/:ro
+      - media:/web/media/:ro
     ports:
       - "80:80"
       - "443:443"
@@ -69,3 +71,4 @@ services:
 volumes:
   pg-data:
   static_volume:
+  media:

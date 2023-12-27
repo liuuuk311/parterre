@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
@@ -18,7 +19,7 @@ class SignUpView(SuccessMessageMixin, CreateView):
     success_message = "Your profile was created successfully"
 
 
-class CreateRecordLabelView(CreateView):
+class CreateRecordLabelView(LoginRequiredMixin, CreateView):
     template_name = 'label/create_your_label.html'
     success_url = reverse_lazy('welcome')
     form_class = UserLabelForm
@@ -29,5 +30,9 @@ class CreateRecordLabelView(CreateView):
         return kwargs
 
 
-class RecordLabelInfoView(TemplateView):
+class RecordLabelInfoView(LoginRequiredMixin, TemplateView):
     template_name = 'label/label_info.html'
+
+
+class UserProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'profile/profile.html'
