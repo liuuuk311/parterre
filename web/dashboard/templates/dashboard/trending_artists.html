@@ -1,28 +1,24 @@
 {% load i18n %}
 
-{% block head %}
-    {{ super.block }}
-    <style>
-    .hide-scroll-bar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
 
-    .hide-scroll-bar::-webkit-scrollbar {
-        display: none;
-    }
-</style>
-{% endblock %}
-
-<div class="flex flex-col bg-white dark:bg-gray-800 m-auto p-auto">
-    <h1 class="text-3xl my-8 capitalize font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">
+<div class="flex flex-col bg-white dark:bg-gray-800 m-auto p-auto max-w-4xl">
+    <h1 class="text-5xl my-8 capitalize font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">
         {% translate "Trending artists" %}
     </h1>
-    <div class="flex overflow-x-scroll pb-10 -ml-6 -mr-6 md:-ml-20 md:-mr-12 lg:ml-0 hide-scroll-bar">
-        <div class="flex flex-nowrap gap-x-8 pl-6 pr-6 md:pl-20 lg:pl-0">
-            {% for artist in artists %}
-                {% include "artists/partials/artist_card.html" with artist=artist %}
-            {% endfor %}
-        </div>
+    <div class="flex flex-col gap-4">
+        {% for artist in artists|slice:":10" %}
+            <a href="{% url 'artist-detail' artist.pk %}" class="rounded-lg shadow-lg w-full dark:bg-gray-800">
+                <div class="px-6 py-4 flex flex-row gap-8 items-center justify-between">
+                    <img class="object-center w-12 h-12 object-scale-down rounded-full" src="
+                                
+                            {% if artist.image %}{{ artist.image.url }}{% else %}https://placehold.co/600x400{% endif %}"
+                         alt="{{ artist.stage_name }}">
+                    <h1 class="text-xl flex-grow md:text-2xl font-semibold text-gray-800 dark:text-white">{{ artist.stage_name }}</h1>
+                    {% with artist.get_percentage as percentage %}
+                        <h3 class="md:text-2xl text-xl font-extrabold {% if percentage > 0 %}text-green-600{% else %}text-red-500{% endif %}">{{ percentage }}%</h3>
+                    {% endwith %}
+                </div>
+            </a>
+        {% endfor %}
     </div>
 </div>
