@@ -21,16 +21,15 @@ def import_artist_data(artist_ids):
         if not artist.stage_name:
             artist.stage_name = data.get('name')
 
-        if not artist.image:
-            img_temp = NamedTemporaryFile(delete=True)
-            with urlopen(data.get('images')[0].get('url')) as response:
-                img_temp.write(response.read())
-                img_temp.flush()
+        img_temp = NamedTemporaryFile(delete=True)
+        with urlopen(data.get('images')[0].get('url')) as response:
+            img_temp.write(response.read())
+            img_temp.flush()
 
-            artist.image.save(
-                f'{artist.stage_name}_{artist.spotify_id}_{int(time.time())}',
-                File(img_temp),
-            )
+        artist.image.save(
+            f'{artist.stage_name}_{artist.spotify_id}_{int(time.time())}.jpg',
+            File(img_temp),
+        )
 
         artist.save()
         last_popularity = artist.popularity_history.last()
