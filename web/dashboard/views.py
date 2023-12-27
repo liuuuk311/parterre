@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
 
@@ -5,7 +6,7 @@ from artists.models import Artist
 from utils.views import AppContextMixin
 
 
-class DashboardView(AppContextMixin, TemplateView):
+class DashboardView(LoginRequiredMixin, AppContextMixin, TemplateView):
     template_name = "dashboard/dashboard.html"
 
     def get(self, request, *args, **kwargs):
