@@ -38,18 +38,18 @@ class ArtistAdmin(admin.ModelAdmin):
     actions = ['import_artist_data_from_spotify', 'import_top_tracks_from_spotify']
 
     def import_artist_data_from_spotify(self, request, queryset):
-        import_artist_data(list(queryset.values_list('id', flat=True)))
+        import_artist_data.delay(list(queryset.values_list('id', flat=True)))
         self.message_user(
             request,
-            f"The system will import spotify data for {queryset.count()} artists",
+            f"The system will import spotify data for {queryset.count()} artists in the background",
             messages.SUCCESS,
         )
 
     def import_top_tracks_from_spotify(self, request, queryset):
-        import_top_tracks(list(queryset.values_list('id', flat=True)))
+        import_top_tracks.delay(list(queryset.values_list('id', flat=True)))
         self.message_user(
             request,
-            f"The system will import the top tracks on spotify for {queryset.count()} artists",
+            f"The system will import the top tracks on spotify for {queryset.count()} artists in the background",
             messages.SUCCESS,
         )
 

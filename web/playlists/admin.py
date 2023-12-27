@@ -9,10 +9,10 @@ class PlaylistAdmin(admin.ModelAdmin):
     actions = ['import_playlist_data']
 
     def import_playlist_data(self, request, queryset):
-        import_playlist_data(list(queryset.values_list('id', flat=True)))
+        import_playlist_data.delay(list(queryset.values_list('id', flat=True)))
         self.message_user(
             request,
-            f"The system will check which tracks spotify data for {queryset.count()} artists",
+            f"The system will check which tracks spotify data for {queryset.count()} artists in the background",
         )
 
 

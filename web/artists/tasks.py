@@ -76,3 +76,13 @@ def import_top_tracks(artist_ids):
                     track=track,
                 )
                 pop.save()
+
+
+@shared_task(name='update-every-artist')
+def update_all_active_artists():
+    artist_ids = Artist.objects.filter(
+        deleted_at__isnull=True
+    ).values_list('id', flat=True)
+
+    import_artist_data(list(artist_ids))
+    import_top_tracks(list(artist_ids))
