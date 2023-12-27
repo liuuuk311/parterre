@@ -2,7 +2,7 @@
 <div class="my-8">
     <h2 class="text-3xl font-bold mb-4">{% translate "Top tracks" %}</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    {% for track in artist.tracks %}
+    {% for track in artist.tracks|slice:":6" %}
         <iframe class="rounded-lg my-4" src="https://open.spotify.com/embed/track/{{ track.spotify_id }}?theme=0"
                 width="100%" height="152" frameBorder="0" allowfullscreen="" loading="lazy"></iframe>
     {% endfor %}
