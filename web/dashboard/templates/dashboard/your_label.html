@@ -15,7 +15,7 @@
 
         <div class="flex justify-center gap-8">
             {% for artist in user.label.artists.all %}
-                <div class="flex flex-col gap-3 items-center justify-between">
+                <a class="flex flex-col gap-3 items-center justify-between" href="{% url 'artist-detail' artist.pk %}">
                     <img class="object-center w-12 h-12 object-scale-down rounded-full" src="
                         {% if artist.image %}{{ artist.image.url }}{% else %}https://placehold.co/600x400{% endif %}"
                          alt="{{ artist.stage_name }}">
@@ -23,7 +23,7 @@
                     {% with artist.get_percentage as percentage %}
                         <h3 class="md:text-xl text-xl font-extrabold {% if percentage > 0 %}text-green-600{% else %}text-red-500{% endif %}">{{ percentage }}%</h3>
                     {% endwith %}
-                </div>
+                </a>
             {% endfor %}
 
             {% if user.label.slots_available %}
