@@ -78,8 +78,8 @@ class Transaction(models.Model):
     WITHDRAW = "withdraw"
 
     TRANSACTION_TYPE = (
-        (DEPOSIT, _("Deposit")),
-        (WITHDRAW, _("Withdraw")),
+        (DEPOSIT, _("Sold")),
+        (WITHDRAW, _("Bought")),
     )
 
     wallet = models.ForeignKey(

@@ -1,0 +1,15 @@
+{% load i18n %}
+<section>
+    <h2 class="text-3xl font-bold mb-4">{% translate "Your wallet" %}</h2>
+    <p class="text-xl">{% translate "Balance" %}: {{ user.wallet.balance }} PIT</p>
+    <hr class="mb-8">
+    <h3 class="text-2xl font-bold mb-4">{% translate "History" %}</h3>
+    <ul>
+        {% for transaction in user.wallet.transactions.all %}
+        <li>
+            {% translate "You" %} {{ transaction.get_transaction_type_display }} <a class="font-semibold" href="{% url "artist-detail" transaction.artist.pk %}">{{ transaction.artist.stage_name }}</a> {% translate "for" %} {{ transaction.amount }} PIT - {{ transaction.timestamp }}
+        </li>
+    {% endfor %}
+    </ul>
+
+</section>
