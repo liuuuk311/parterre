@@ -27,7 +27,7 @@
             {% endfor %}
 
             {% if user.label.slots_available %}
-                <button class="flex flex-col gap-3 items-center justify-between">
+                <a class="flex flex-col gap-3 items-center justify-between" href="{% url "explore" %}">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-12 h-12 bg-gray-200 rounded-full dark:bg-gray-700">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
@@ -35,7 +35,7 @@
                     <h3 class="text-lg flex-grow md:text-2xl font-light text-gray-800 dark:text-white">
                         {% translate "Add new artist" %}
                     </h3>
-                </button>
+                </a>
             {% endif %}
         </div>
     </div>

@@ -1,0 +1,5 @@
+<div class="bg-gray-200 rounded-lg px-3 shadow-lg">
+{% for artist in artists|slice:":5" %}
+    <a href="{% url 'artist-detail' artist.pk %}" class="py-2 my-2 text-xl font-semibold block">{{ artist.stage_name }}</a>
+{% endfor %}
+</div>

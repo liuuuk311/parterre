@@ -7,7 +7,7 @@ from utils.views import AppContextMixin
 
 
 class DashboardView(LoginRequiredMixin, AppContextMixin, TemplateView):
-    template_name = "dashboard/dashboard.html"
+    template_name = "dashboard/index.html"
 
     def get(self, request, *args, **kwargs):
         if not request.user.has_label:

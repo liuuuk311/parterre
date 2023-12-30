@@ -28,37 +28,36 @@ register = template.Library()
 @register.filter(name="crispy")
 def as_crispy_form(form, template_pack=TEMPLATE_PACK):
     helper = getattr(form, "helper", None)
-
     c = Context(
         {
             "field_template": "%s/field.html" % template_pack,
-            "form_show_errors": helper.form_show_errors if helper else True,
-            "form_show_labels": True,
+            "form_show_errors": helper.form_show_errors if helper is not None else True,
+            "form_show_labels": helper.form_show_labels if helper is not None else True,
             "label_class": helper.label_class if helper is not None else "",
             "field_class": helper.field_class if helper is not None else "",
         }
     ).flatten()
 
     if isinstance(form, BaseFormSet):
-        template = uni_formset_template(template_pack)
+        _template = uni_formset_template(template_pack)
         c["formset"] = form
     else:
-        template = uni_form_template(template_pack)
+        _template = uni_form_template(template_pack)
         c["form"] = form
 
-    return template.render(c)
+    return _template.render(c)
 
 
 @register.filter(name="as_crispy_errors")
 def as_crispy_errors(form, template_pack=TEMPLATE_PACK):
     if isinstance(form, BaseFormSet):
-        template = get_template("%s/errors_formset.html" % template_pack)
+        _template = get_template("%s/errors_formset.html" % template_pack)
         c = Context({"formset": form}).flatten()
     else:
-        template = get_template("%s/errors.html" % template_pack)
+        _template = get_template("%s/errors.html" % template_pack)
         c = Context({"form": form}).flatten()
 
-    return template.render(c)
+    return _template.render(c)
 
 
 @register.filter(name="as_crispy_field")
@@ -70,7 +69,7 @@ def as_crispy_field(field, template_pack=TEMPLATE_PACK):
     attributes = {
         "field": field,
         "form_show_errors": True,
-        "form_show_labels": True,
+        "form_show_labels": bool(helper.form_show_labels) if helper else True,
         "label_class": helper.label_class if helper else "",
         "field_class": helper.field_class if helper else "",
     }
@@ -81,10 +80,10 @@ def as_crispy_field(field, template_pack=TEMPLATE_PACK):
         template_path = helper.field_template
     if not template_path:
         template_path = "%s/field.html" % template_pack
-    template = get_template(template_path)
+    _template = get_template(template_path)
 
     c = Context(attributes).flatten()
-    return template.render(c)
+    return _template.render(c)
 
 
 @register.filter(name="flatatt")

@@ -1,0 +1,13 @@
+{% extends 'utils/base_app.html' %}
+{% load static tailwind_tags i18n %}
+
+{% block title %}
+    {% translate "Explore" %}
+{% endblock %}
+
+
+{% block content %}
+    {{ block.super }}
+    {% include "explore/search.html" %}
+    {% include "explore/genres.html" %}
+{% endblock %}

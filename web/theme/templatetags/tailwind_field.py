@@ -239,7 +239,7 @@ def crispy_addon(field, append="", prepend="", form_show_labels=True):
                 "form_show_labels": form_show_labels,
             }
         )
-        template = loader.get_template(
+        _template = loader.get_template(
             "%s/layout/prepended_appended_text.html" % get_template_pack()
         )
         context["crispy_prepended_text"] = prepend
@@ -250,4 +250,4 @@ def crispy_addon(field, append="", prepend="", form_show_labels=True):
 
         context = context.flatten()
 
-    return template.render(context)
+    return _template.render(context)
