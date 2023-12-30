@@ -109,6 +109,10 @@ class RecordLabel(models.Model):
     def slots_available(self) -> int:
         return max(self.slots - self.artists.count(), 0)
 
+    @property
+    def is_empty(self) -> bool:
+        return self.artists.count() == 0
+
     def add_artist(self, artist):
         if self.slots_available:
             self.artists.add(artist)
