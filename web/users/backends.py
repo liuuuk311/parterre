@@ -16,7 +16,8 @@ class CustomUserModelBackend(ModelBackend):
         try:
             user = UserModel._default_manager.get(
                 Q(username__exact=username)
-                | (Q(email__iexact=username) & Q(email_verified=True))
+                | (Q(email__iexact=username) #& Q(email_verified=True) # TODO: uncomment this line when email verification is implemented
+                )
             )
         except UserModel.DoesNotExist:
             # Run the default password hasher once to reduce the timing
