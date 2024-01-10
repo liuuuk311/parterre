@@ -36,6 +36,8 @@ class ArtistAdmin(admin.ModelAdmin):
     fields = ('spotify_url', 'stage_name', 'image', 'bio', 'force_visible')
     inlines = [ArtistProfileInline, ArtistPopularityInline, TrackInline]
     actions = ['import_artist_data_from_spotify', 'import_top_tracks_from_spotify']
+    list_filter = ['stage_name', ]
+
 
     def import_artist_data_from_spotify(self, request, queryset):
         import_artist_data.delay(list(queryset.values_list('id', flat=True)))
