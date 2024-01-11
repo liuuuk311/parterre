@@ -30,6 +30,17 @@ class User(AbstractUser, TimestampedModel):
         self.label.add_artist(artist)
         return artist
 
+    def sell_artist(self, artist: Artist):
+        if not artist:
+            return
+
+        success = self.wallet.sell(artist.current_price, artist=artist)
+        if not success:
+            return
+
+        self.label.artists.remove(artist)
+        return artist
+
     @property
     def has_label(self):
         return RecordLabel.objects.filter(user=self).exists()
@@ -47,11 +58,15 @@ class Wallet(models.Model):
         self.balance += amount
         self.save()
         self.transactions.add(
-            transaction_type=Transaction.DEPOSIT,
-            amount=amount,
-            notes=notes,
-            artist=artist,
+            Transaction(
+                transaction_type=Transaction.DEPOSIT,
+                amount=amount,
+                notes=notes,
+                artist=artist,
+            ),
+            bulk=False,
         )
+        return True
 
     def buy(
         self, amount: int, notes: Optional[str] = None, artist: Optional[Artist] = None

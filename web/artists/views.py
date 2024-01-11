@@ -40,3 +40,18 @@ class BuyArtistView(View, TemplateResponseMixin, AppContextMixin):
 
         self.template_name = "artists/partials/artist_bought.html"
         return self.render_to_response(super().get_context_data())
+
+
+class SellArtistView(View, TemplateResponseMixin, AppContextMixin):
+    def post(self, request, *args, **kwargs):
+        artist = Artist.objects.filter(id=kwargs.get('pk')).first()
+        if not artist:
+            return Http404()
+
+        success = self.request.user.sell_artist(artist)
+        if not success:
+            self.template_name = "artists/partials/artist_purchase_failed.html"
+            return self.render_to_response(super().get_context_data())
+
+        self.template_name = "artists/partials/artist_bought.html"
+        return self.render_to_response(super().get_context_data())

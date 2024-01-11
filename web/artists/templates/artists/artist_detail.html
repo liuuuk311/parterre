@@ -28,7 +28,14 @@
 
             </div>
             {% if object in user.label.artists.all %}
-                <p>Already in your roaster</p>
+                <div class="flex justify-between items-center" id="action">
+                <span class="title-font font-medium text-2xl text-gray-900">
+                    {{ object.current_price }} PIT
+                </span>
+                {% translate "Sell artist" as btn_label %}
+                {% url "sell-artist" object.id as endpoint %}
+                {% include "utils/buttons/primary_button.html" with endpoint=endpoint method="post" target="#action" swap="innerHTML" label=btn_label %}
+            </div>
             {% elif user.label.slots_available == 0 %}
                 <p>Buy new slot</p>
             {% else %}
