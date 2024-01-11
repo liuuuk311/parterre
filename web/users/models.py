@@ -23,7 +23,7 @@ class User(AbstractUser, TimestampedModel):
         if not artist:
             return
 
-        success = self.wallet.buy(artist.current_price)
+        success = self.wallet.buy(artist.current_price, artist=artist)
         if not success:
             return
 

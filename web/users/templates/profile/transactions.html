@@ -1,13 +1,28 @@
 {% load i18n %}
 <section>
-    <h2 class="text-3xl font-bold mb-4">{% translate "Your wallet" %}</h2>
+    <div class="flex items-center gap-8 mb-12">
+        <img class="object-cover w-12 h-12 rounded-full" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=faceare&facepad=3&w=688&h=688&q=100" alt="">
+        <div>
+            <h1 class="text-xl font-semibold text-gray-700 capitalize dark:text-white">{{ user.username }}</h1>
+
+            <p class="text-base text-gray-500 dark:text-gray-400">{{ user.label.name }}</p>
+        </div>
+    </div>
+    <h2 class="text-3xl font-bold my-4">{% translate "Your wallet" %}</h2>
     <p class="text-xl">{% translate "Balance" %}: {{ user.wallet.balance }} PIT</p>
     <hr class="mb-8">
     <h3 class="text-2xl font-bold mb-4">{% translate "History" %}</h3>
     <ul>
         {% for transaction in user.wallet.transactions.all %}
-        <li>
-            {% translate "You" %} {{ transaction.get_transaction_type_display }} <a class="font-semibold" href="">{{ transaction.artist.stage_name }}</a> {% translate "for" %} {{ transaction.amount }} PIT - {{ transaction.timestamp }}
+        <li class="rounded-lg shadow-lg w-full dark:bg-gray-800">
+            <div class="px-6 py-4 flex flex-row gap-8 items-center justify-between">
+            <span>{{ transaction.get_transaction_type_display }} <a class="font-semibold" href="">{{ transaction.artist.stage_name }}</a></span>
+                {% if transaction.transaction_type == "withdraw" %}
+                    <span class="font-bold text-red-500">- {{ transaction.amount }} PIT</span>
+                {% else %}
+                     <span class="font-bold text-green-500">+ {{ transaction.amount }} PIT</span>
+                {% endif %}
+            </div>
         </li>
     {% endfor %}
     </ul>
