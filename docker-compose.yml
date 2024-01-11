@@ -75,8 +75,6 @@ services:
       dockerfile: docker/backend.Dockerfile
     restart: unless-stopped
     command: celery -A core worker -l INFO
-    volumes:
-      - ./web/:/web
     environment:
       - POSTGRES_NAME=${POSTGRES_NAME}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -103,8 +101,6 @@ services:
       dockerfile: docker/backend.Dockerfile
     restart: unless-stopped
     command: celery -A core beat -l INFO
-    volumes:
-      - ./web/:/web
     environment:
       - POSTGRES_NAME=${POSTGRES_NAME}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}

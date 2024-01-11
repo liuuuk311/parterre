@@ -1,5 +1,4 @@
 from django.contrib import admin, messages
-from django import forms
 from artists.models import Artist, Profile, ArtistPopularity, Track
 from artists.tasks import import_artist_data, import_top_tracks
 
@@ -37,7 +36,6 @@ class ArtistAdmin(admin.ModelAdmin):
     inlines = [ArtistProfileInline, ArtistPopularityInline, TrackInline]
     actions = ['import_artist_data_from_spotify', 'import_top_tracks_from_spotify']
     list_filter = ['stage_name', ]
-
 
     def import_artist_data_from_spotify(self, request, queryset):
         import_artist_data.delay(list(queryset.values_list('id', flat=True)))
