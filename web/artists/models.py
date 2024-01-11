@@ -31,6 +31,7 @@ class Artist(UUIDModel, TimestampedModel):
         blank=True,
     )
     force_visible = models.BooleanField(default=False)
+    genres = models.ManyToManyField("Genre", related_name="artists")
 
     def __str__(self):
         if self.stage_name:
@@ -138,3 +139,10 @@ class TrackPopularity(models.Model):
 
     class Meta:
         ordering = ('created_at',)
+
+
+class Genre(UUIDModel):
+    name = models.CharField(max_length=256, unique=True)
+
+    def __str__(self):
+        return self.name

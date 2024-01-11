@@ -1,5 +1,5 @@
 from django.contrib import admin, messages
-from artists.models import Artist, Profile, ArtistPopularity, Track
+from artists.models import Artist, Profile, ArtistPopularity, Track, Genre
 from artists.tasks import import_artist_data, import_top_tracks
 
 
@@ -32,7 +32,7 @@ class TrackInline(admin.TabularInline):
 
 
 class ArtistAdmin(admin.ModelAdmin):
-    fields = ('spotify_url', 'stage_name', 'image', 'bio', 'force_visible')
+    fields = ('spotify_url', 'stage_name', 'image', 'bio', 'force_visible', 'genres')
     inlines = [ArtistProfileInline, ArtistPopularityInline, TrackInline]
     actions = ['import_artist_data_from_spotify', 'import_top_tracks_from_spotify']
     list_filter = ['stage_name', ]
@@ -55,3 +55,4 @@ class ArtistAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Artist, ArtistAdmin)
+admin.site.register(Genre)
