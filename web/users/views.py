@@ -31,7 +31,7 @@ class CreateRecordLabelView(LoginRequiredMixin, CreateView):
 
 
 class RecordLabelInfoView(LoginRequiredMixin, TemplateView):
-    template_name = 'label/label_info.html'
+    template_name = 'label/welcome.html'
 
 
 class UserProfileView(LoginRequiredMixin, TemplateView):

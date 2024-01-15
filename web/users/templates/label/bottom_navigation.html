@@ -1,0 +1,31 @@
+<!-- Bottom Navigation -->
+<div class="py-5 bg-white">
+    <div class="mx-auto">
+        <div class="flex justify-between">
+            <div class="w-1/2">
+                <button
+                        x-show="step > 1"
+                        @click="step--"
+                        class="w-32 focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-gray-600 bg-white hover:bg-gray-100 font-medium border"
+                >Previous
+                </button>
+            </div>
+
+            <div class="w-1/2 text-right">
+                <button
+                        x-show="step < 6"
+                        @click="step++"
+                        class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-blue-500 hover:bg-blue-600 font-medium"
+                >Next
+                </button>
+
+                <button
+                        @click="step = 'complete'"
+                        x-show="step === 6"
+                        class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-blue-500 hover:bg-blue-600 font-medium"
+                >Complete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

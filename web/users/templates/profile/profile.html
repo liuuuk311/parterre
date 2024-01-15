@@ -9,4 +9,7 @@
 {% block content %}
     {{ block.super }}
     {% include "profile/transactions.html" %}
+    <a href="{% url 'logout' %}">
+        {% translate "Logout" %}
+    </a>
 {% endblock %}

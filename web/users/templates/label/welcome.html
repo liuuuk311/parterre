@@ -1,0 +1,55 @@
+{% extends 'utils/base_app.html' %}
+{% load static tailwind_tags tailwind_filters i18n %}
+
+{% block title %}
+    {% translate "Dashboard" %}
+{% endblock %}
+
+
+{% block content %}
+    {{ block.super }}
+    <div class="max-w-3xl mx-auto text-center">
+        <div x-data="app()" x-cloak>
+            <div x-show.transition="step === 'complete'">
+                {% include "label/step_complete.html" %}
+            </div>
+            <div x-show.transition="step != 'complete'">
+                {% include "label/navigation.html" %}
+
+                <!-- Step Content -->
+                <div class="py-10 text-center">
+                    <div x-show.transition.in="step === 1">
+                        {% include "label/step1.html" %}
+                    </div>
+                    <div x-show.transition.in="step === 2">
+                        {% include "label/step2.html" %}
+                    </div>
+                    <div x-show.transition.in="step === 3">
+                        {% include "label/step3.html" %}
+                    </div>
+                    <div x-show.transition.in="step === 4">
+                        {% include "label/step4.html" %}
+
+                    </div>
+                    <div x-show.transition.in="step === 5">
+                        {% include "label/step5.html" %}
+                    </div>
+                    <div x-show.transition.in="step === 6">
+                        {% include "label/step6.html" %}
+                    </div>
+                </div>
+                {% include "label/bottom_navigation.html" %}
+                <!-- / Step Content -->
+            </div>
+        </div>
+    </div>
+
+<script>
+    function app() {
+        return {
+            step: 1,
+        }
+    }
+</script>
+
+{% endblock %}
