@@ -6,7 +6,7 @@ from django.views.generic.base import TemplateResponseMixin
 from artists.models import Artist
 from utils.helpers import create_svg_chart
 from utils.views import AppContextMixin
-
+from django.utils.translation import gettext_lazy as _
 
 class ArtistDetailView(DetailView, AppContextMixin):
     model = Artist
@@ -36,7 +36,9 @@ class BuyArtistView(View, TemplateResponseMixin, AppContextMixin):
         success = self.request.user.buy_artist(artist)
         if not success:
             self.template_name = "artists/partials/artist_purchase_failed.html"
-            return self.render_to_response(super().get_context_data())
+            context = super().get_context_data()
+            context['error_message'] = _("You don't have enough PIT to buy this artist.")
+            return self.render_to_response(context)
 
         self.template_name = "artists/partials/artist_bought.html"
         return self.render_to_response(super().get_context_data())
