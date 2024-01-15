@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "artists.apps.ArtistsConfig",
     "playlists.apps.PlaylistsConfig",
     "explore.apps.ExploreConfig",
+    "marketplace.apps.MarketplaceConfig",
 ]
 
 MIDDLEWARE = [
@@ -100,10 +101,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "it-IT"
 LANGUAGES = [
-    ('en', _('English')),
     ('it', _('Italian')),
+    ('en', _('English')),
 ]
 LOCALE_PATHS = [BASE_DIR / "locale"]
 

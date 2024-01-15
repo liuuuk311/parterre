@@ -1,0 +1,15 @@
+{% extends 'utils/base_app.html' %}
+{% load static tailwind_tags i18n %}
+
+{% block title %}
+    {% translate "Marketplace" %}
+{% endblock %}
+
+
+{% block content %}
+    {{ block.super }}
+    <div class="my-24">
+        <h1 class="text-4xl font-bold">{% translate "We are build the marketplace" %}</h1>
+        <p>{% translate "We are building an awesome marketplace where you can spend your PIT to buy actual stuff" %}</p>
+    </div>
+{% endblock %}

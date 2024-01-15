@@ -33,5 +33,6 @@ class AppContextMixin(ContextMixin):
         context["menu_items"] = [
             {'label': _('dashboard'), 'url': reverse_lazy('dashboard')},
             {'label': _('explore'), 'url': reverse_lazy('explore')},
+            {'label': _('marketplace'), 'url': reverse_lazy('marketplace')},
         ]
         return context
