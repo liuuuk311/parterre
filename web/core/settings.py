@@ -2,8 +2,8 @@ from pathlib import Path
 import environ
 from django.utils.translation import gettext_lazy as _
 
-
-env = environ.Env(DEBUG=(bool, False), POSTGRES_PORT=(int, 5432))
+env = environ.Env(DEBUG=(bool, False))
+env.NOTSET = ""
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -80,7 +80,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -98,7 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -153,13 +151,11 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_BROKER_URL = f'redis://{env("REDIS_HOST")}:{env("REDIS_PORT")}/0'
 CELERY_RESULT_BACKEND = f'redis://{env("REDIS_HOST")}:{env("REDIS_PORT")}/0'
 
-
 SPOTIFY_CLIENT_ID = env('SPOTIFY_CLIENT_ID')
 SPOTIFY_CLIENT_SECRET = env('SPOTIFY_CLIENT_SECRET')
 
 SPOTIFY_PARTNER_CLIENT_VERSION = env('SPOTIFY_PARTNER_CLIENT_VERSION')
 SPOTIFY_DC_COOKIE = env('SPOTIFY_DC_COOKIE')
 SPOTIFY_KEY_COOKIE = env('SPOTIFY_KEY_COOKIE')
-
 
 ALLOWED_HOSTS = ["*"]
