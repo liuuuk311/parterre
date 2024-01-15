@@ -12,5 +12,7 @@ COPY web/requirements.txt .
 RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt && pip install gunicorn
 COPY web .
 
+RUN python manage.py tailwind install && python manage.py tailwind build
+
 EXPOSE 8000
 CMD python manage.py runserver 0.0.0.0:8000
