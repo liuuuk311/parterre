@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
 
 from .forms import LoginForm, UserRegisterForm, UserLabelForm
+from .models import Wallet
 
 
 class CustomLoginView(LoginView):

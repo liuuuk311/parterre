@@ -3,6 +3,7 @@ from typing import Optional
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models import signals
 from django.utils.translation import gettext_lazy as _
 
 from artists.models import Artist
@@ -14,10 +15,16 @@ class User(AbstractUser, TimestampedModel):
         LIGHT = "light", _("Light")
         DARK = "dark", _("Dark")
 
-    email_verified = models.BooleanField(default=False)
+    email_verified = models.BooleanField(default=True)
     preferred_theme = models.CharField(
         max_length=8, choices=Theme.choices, default=Theme.LIGHT
     )
+
+    def save(self, *args, **kwargs):
+        if not hasattr(self, "wallet"):
+            self.wallet = Wallet(user=self)
+
+        super().save(*args, **kwargs)
 
     def buy_artist(self, artist: Artist):
         if not artist:
@@ -50,7 +57,7 @@ class Wallet(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='wallet'
     )
-    balance = models.PositiveIntegerField(default=10000)
+    balance = models.PositiveIntegerField(default=1000)
 
     def sell(
         self, amount: int, notes: Optional[str] = None, artist: Optional[Artist] = None
@@ -131,3 +138,12 @@ class RecordLabel(models.Model):
     def add_artist(self, artist):
         if self.slots_available:
             self.artists.add(artist)
+
+
+def create_wallet(sender, instance, created, **kwargs):
+    """Create Wallet for every new User."""
+    if created:
+        Wallet.objects.create(user=instance)
+
+
+signals.post_save.connect(create_wallet, sender=User, weak=False, dispatch_uid='users.models.create_wallet')
