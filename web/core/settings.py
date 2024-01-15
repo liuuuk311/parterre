@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     "django.contrib.humanize",
     'storages',
     "tailwind",
-    "django_browser_reload",
     "widget_tweaks",
     "crispy_forms",
     "theme",
@@ -49,7 +48,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = "core.urls"
