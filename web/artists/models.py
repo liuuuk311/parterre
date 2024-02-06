@@ -31,7 +31,7 @@ class Artist(UUIDModel, TimestampedModel):
         blank=True,
     )
     force_visible = models.BooleanField(default=False)
-    genres = models.ManyToManyField("Genre", related_name="artists")
+    genres = models.ManyToManyField("Genre", related_name="artists", blank=True)
 
     def __str__(self):
         if self.stage_name:

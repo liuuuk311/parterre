@@ -4,6 +4,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
 
+from utils.views import AppContextMixin
+
 from .forms import LoginForm, UserRegisterForm, UserLabelForm
 from .models import Wallet
 
@@ -35,5 +37,5 @@ class RecordLabelInfoView(LoginRequiredMixin, TemplateView):
     template_name = 'label/welcome.html'
 
 
-class UserProfileView(LoginRequiredMixin, TemplateView):
+class UserProfileView(AppContextMixin, LoginRequiredMixin, TemplateView):
     template_name = 'profile/profile.html'
