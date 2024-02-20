@@ -1,6 +1,11 @@
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import CreateView
+from django.contrib.messages.views import SuccessMessageMixin
+
+from parterre.forms import ContactForm
+from parterre.models import Contact
 
 
 class WebsiteContextMixin(TemplateView):
@@ -8,7 +13,8 @@ class WebsiteContextMixin(TemplateView):
         context = super().get_context_data(**kwargs)
         context["menu_items"] = [
             {'label': _('home'), 'url': ''},
-            {'label': _('how it works'), 'url': ''},
+            {'label': _('Come funziona'), 'url': '#how-it-works'},
+            {'label': _('Contattaci'), 'url': '#contact'},
         ]
         return context
 
@@ -20,3 +26,21 @@ class HomeView(WebsiteContextMixin):
         if request.user.is_authenticated:
             return redirect('dashboard')
         return super().get(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        if not self.request.user.is_authenticated:
+            kwargs['form'] = ContactForm()
+        
+        return super().get_context_data(**kwargs)
+
+
+class CreateContactView(SuccessMessageMixin, CreateView):
+    success_message = "Your message was sent successfully"
+    model = Contact
+    form_class = ContactForm
+    template_name = "parterre/home.html"
+    success_url = "/"
+    
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
