@@ -8,7 +8,8 @@
                 Parterre è la piattaforma esclusiva degli artisti emergenti dove poter creare e consolidare la propria fanbase.
             </p>
             <div class="flex flex-row gap-x-3">
-                {% include "utils/buttons/primary_button.html" with label="Iscriviti" href="#" %}
+                {% url 'signup' as sign_up_url %}
+                {% include "utils/buttons/primary_button.html" with label="Iscriviti" href=sign_up_url %}
             </div>
         </div>
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">

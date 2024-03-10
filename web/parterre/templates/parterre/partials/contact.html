@@ -1,5 +1,6 @@
 {% load static tailwind_tags tailwind_filters i18n %}
-
+<section class="text-gray-600 body-font bg-sky-200">
+    <div class="container px-5 py-12 mx-auto">
 <form method="post" action="{% url 'contact' %}" id="contact">
     {% csrf_token %}
     <div class="mt-2">
@@ -19,3 +20,4 @@
         {% include "utils/buttons/primary_button.html" with label=create_new_label submit=True %}
     </div>
 </form>
+</div></section>

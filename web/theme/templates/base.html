@@ -18,12 +18,15 @@
 	<body class="dark:bg-slate-800" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
         <div x-data="{ showTokenModal: false }">
             {% block before_content %}
+            
             {% endblock %}
-            <div class="container px-6 py-4 mx-auto">
+            
+            
                 {% block content %}
                 {% endblock %}
-            </div>
+                
             {% block after_content %}
+            </div>
             {% endblock %}
         </div>
         {% block scripts %}

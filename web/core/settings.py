@@ -18,6 +18,7 @@ DEBUG = env('DEBUG')
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    'csvexport',
     "users.apps.UserConfig",
     "django.contrib.admin",
     "django.contrib.auth",

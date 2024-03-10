@@ -11,3 +11,4 @@ celery~=5.2.7
 redis~=4.5.3
 requests~=2.28.2
 svgwrite~=1.4.3
+django-admin-csvexport==2.2

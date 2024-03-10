@@ -46,11 +46,11 @@
                         
                     {% else %}
                         <div class="flex flex-row gap-x-6">
-                            {% translate "sign in" as  sign_in %}
+                            {% translate "login" as  sign_in %}
                             {% url 'login' as sign_in_url %}
                             {% include "utils/buttons/secondary_button.html" with label=sign_in href=sign_in_url %}
 
-                            {% translate "sign up" as  sign_up %}
+                            {% translate "iscriviti" as  sign_up %}
                             {% url 'signup' as sign_up_url %}
                             {% include "utils/buttons/primary_button.html" with label=sign_up href=sign_up_url %}
                         </div>
