@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 
 from parterre.forms import ContactForm
 from parterre.models import Contact
@@ -39,8 +40,12 @@ class CreateContactView(SuccessMessageMixin, CreateView):
     model = Contact
     form_class = ContactForm
     template_name = "parterre/home.html"
-    success_url = "/"
+    success_url = reverse_lazy('contact-success')
     
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+    
+
+class SuccessContactView(WebsiteContextMixin, TemplateView):
+    template_name = "parterre/success_contact.html"

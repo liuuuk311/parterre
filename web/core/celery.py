@@ -18,12 +18,10 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 
-@app.on_after_configure.connect
-def setup_periodic_tasks(sender, **kwargs):
-    # Calls test('hello') every 10 seconds.
-    from artists.tasks import update_all_active_artists
-    sender.add_periodic_task(
-        crontab(hour=6, minute=0, day_of_week=5),
-        update_all_active_artists.s(),
-        name='add every 10'
-    )
+app.conf.beat_schedule = {
+    # Executes every Monday morning at 7:30 a.m.
+    'update-artists-every-monday-morning': {
+        'task': 'artists.tasks.update_all_active_artists',
+        'schedule': crontab(hour=7, minute=30, day_of_week=1),
+    },
+}
