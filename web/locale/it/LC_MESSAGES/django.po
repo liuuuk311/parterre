@@ -278,8 +278,8 @@ msgstr ""
 "vendere un artista per ottenere qualche profitto"
 
 #: users/templates/label/step6.html:7
-msgid "You can use your PIT to get valuable things from our marketplace"
-msgstr "Puoi usare i tuoi PIT per ottenere cose preziose dal nostro mercato"
+msgid "Join the Parterre world: compete, have fun, and trade PITs for great prizes!"
+msgstr "Entra nel mondo di Parterre: competi, divertiti e scambia PIT per ottenere premi fantastici!"
 
 #: users/templates/label/step_complete.html:9
 msgid "Ready to start?"
