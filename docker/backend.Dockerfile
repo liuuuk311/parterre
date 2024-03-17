@@ -4,8 +4,8 @@ ENV PYTHONUNBUFFERED 1
 RUN apk add --update npm
 
 ENV LC_ALL en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US.UTF-8
+ENV LANG it_IT.UTF-8
+ENV LANGUAGE it_IT.UTF-8
 
 WORKDIR /web
 COPY web/requirements.txt .
