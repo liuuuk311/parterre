@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-15 16:19+0100\n"
+"POT-Creation-Date: 2024-03-17 17:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: artists/templates/artists/artist_detail.html:35
 msgid "Sell artist"
 msgstr "Vendi artista"
@@ -33,13 +34,13 @@ msgstr "Brani migliori"
 msgid "You don't have enough PIT to buy this artist."
 msgstr "Non hai abbastanza PIT per acquistare questo artista."
 
-#: core/settings.py:105
-msgid "English"
-msgstr "Inglese"
-
-#: core/settings.py:106
+#: core/settings.py:107
 msgid "Italian"
 msgstr "Italiano"
+
+#: core/settings.py:108
+msgid "English"
+msgstr "Inglese"
 
 #: dashboard/templates/dashboard/index.html:5
 #: users/templates/label/create_your_label.html:5
@@ -53,7 +54,9 @@ msgstr "Artisti in tendenza"
 
 #: dashboard/templates/dashboard/your_label.html:10
 msgid "Your record label is empty, you can add add new artists to your roaster"
-msgstr "La tua etichetta discografica è vuota, puoi aggiungere nuovi artisti al tuo roster"
+msgstr ""
+"La tua etichetta discografica è vuota, puoi aggiungere nuovi artisti al tuo "
+"roster"
 
 #: dashboard/templates/dashboard/your_label.html:12
 msgid "Your label has"
@@ -79,112 +82,34 @@ msgstr "Generi"
 msgid "Explore"
 msgstr "Esplora"
 
-#: marketplace/templates/index.html:5 users/templates/label/step6.html:4
+#: marketplace/templates/marketplace/index.html:5
+#: users/templates/label/step6.html:4
 msgid "Marketplace"
 msgstr "Mercato"
 
-#: marketplace/templates/index.html:11
+#: marketplace/templates/marketplace/index.html:12
 msgid "We are build the marketplace"
 msgstr "Stiamo costruendo il mercato"
 
-#: marketplace/templates/index.html:12
+#: marketplace/templates/marketplace/index.html:13
 msgid ""
 "We are building an awesome marketplace where you can spend your PIT to buy "
 "actual stuff"
 msgstr ""
-"Stiamo costruendo un mercato fantastico dove puoi spendere i tuoi PIT per acquistare "
-"roba reale"
+"Stiamo costruendo un mercato fantastico dove puoi spendere i tuoi PIT per "
+"acquistare roba reale"
 
-#: parterre/templates/parterre/partials/hero.html:6
-#: utils/templates/utils/footer/footer.html:33
-msgid "Build Your Own Indie Music Label and Get Rewarded"
-msgstr "Crea la tua etichetta musicale indie e ottieni ricompense"
-
-#: parterre/templates/parterre/partials/hero.html:9
-msgid "Invest in Indie Artists and Rise to the Top of the Music Industry"
-msgstr "Investi in artisti indie e sali in cima all'industria musicale"
-
-#: parterre/templates/parterre/partials/how_it_works.html:9
-msgid "How does it work?"
-msgstr "Come funziona?"
-
-#: parterre/templates/parterre/partials/how_it_works.html:14
-#: users/templates/registration/register.html:13
-msgid "Sign Up"
-msgstr "Registrati"
-
-#: parterre/templates/parterre/partials/how_it_works.html:17
-msgid ""
-"Create your account on Parterre Music and start exploring our platform. It's "
-"free to sign up and you can start building your music label right away!"
+#: parterre/templates/parterre/partials/contact.html:19 parterre/views.py:18
+msgid "Contattaci"
 msgstr ""
-"Crea il tuo account su Parterre Music e inizia a esplorare la nostra piattaforma. È "
-"gratuito registrarsi e puoi iniziare subito a costruire la tua etichetta musicale!"
 
-#: parterre/templates/parterre/partials/how_it_works.html:23
-msgid "Discover Artists"
-msgstr "Scopri artisti"
-
-#: parterre/templates/parterre/partials/how_it_works.html:26
-msgid ""
-"Invest in your favorite indie artists using PIT tokens. You can buy and sell "
-"artists as you wish, and use your strategic thinking to make smart "
-"investments."
-msgstr ""
-"Investi nei tuoi artisti indie preferiti utilizzando i token PIT. Puoi comprare e vendere "
-"artisti come desideri e utilizzare il tuo pensiero strategico per fare investimenti intelligenti."
-
-#: parterre/templates/parterre/partials/how_it_works.html:32
-msgid "Monitor Performance"
-msgstr "Monitora le prestazioni"
-
-#: parterre/templates/parterre/partials/how_it_works.html:35
-msgid ""
-"Keep an eye on your artists' performance on different music charts and "
-"social media platforms. Parterre Music's algorithm will calculate a score "
-"for each artist every week, based on various factors, and you can use this "
-"information to make informed decisions about your investments."
-msgstr ""
-"Tieni d'occhio le performance dei tuoi artisti su diverse classifiche musicali e "
-"piattaforme di social media. L'algoritmo di Parterre Music calcolerà un punteggio "
-"per ogni artista ogni settimana, basato su vari fattori, e potrai utilizzare queste "
-"informazioni per prendere decisioni informate sui tuoi investimenti."
-
-#: parterre/templates/parterre/partials/how_it_works.html:41
-msgid "Gain Rewards"
-msgstr "Guadagna ricompense"
-
-#: parterre/templates/parterre/partials/how_it_works.html:44
-msgid ""
-"As your artists gain popularity and rise up the charts, you'll earn rewards "
-"in the form of PIT tokens. These tokens can be used to buy more artists, or "
-"cashed out for real money."
-msgstr ""
-"Alla crescita di popolarità dei tuoi artisti e al loro salire nelle classifiche, guadagnerai "
-"ricompense sotto forma di token PIT. Questi token possono essere utilizzati per "
-"comprare più artisti o convertiti in denaro reale."
-
-#: parterre/templates/parterre/partials/how_it_works.html:50
-msgid "Rise to the Top"
-msgstr "Sali in cima"
-
-#: parterre/templates/parterre/partials/how_it_works.html:53
-msgid ""
-"With smart investments and a keen eye for talent, you can rise to the top of "
-"the music industry and become a leading music label owner. Parterre Music is "
-"the perfect platform for music enthusiasts and entrepreneurs looking to make "
-"their mark in the industry."
-msgstr ""
-"Con investimenti intelligenti e un occhio attento al talento, puoi salire in cima "
-"all'industria musicale e diventare un proprietario di un'etichetta discografica di successo. Parterre Music è la piattaforma perfetta per gli appassionati di musica e gli imprenditori che cercano di lasciare il loro segno nell'industria."
-
-#: parterre/views.py:10
+#: parterre/views.py:16
 msgid "home"
 msgstr "home"
 
-#: parterre/views.py:11
-msgid "how it works"
-msgstr "come funziona"
+#: parterre/views.py:17
+msgid "Come funziona"
+msgstr ""
 
 #: theme/templates/tailwind/field.html:11
 msgid "(Optional)"
@@ -197,9 +122,10 @@ msgid ""
 "be case-sensitive. If this is your first time to login, make sure to check "
 "your email and verify your email address"
 msgstr ""
-"Inserisci un %(username)s e una password corretti. Nota che entrambi i campi possono "
-"essere sensibili alle maiuscole e minuscole. Se è la tua prima volta a effettuare il login, "
-"assicurati di controllare la tua email e verificare il tuo indirizzo email."
+"Inserisci un %(username)s e una password corretti. Nota che entrambi i campi "
+"possono essere sensibili alle maiuscole e minuscole. Se è la tua prima volta "
+"a effettuare il login, assicurati di controllare la tua email e verificare "
+"il tuo indirizzo email."
 
 #: users/forms.py:21
 msgid "This account is inactive."
@@ -233,7 +159,8 @@ msgstr "Crea la tua etichetta discografica"
 msgid ""
 "Once you created your record label, you're talent scout adventure will begin"
 msgstr ""
-"Una volta creata la tua etichetta discografica, inizierà la tua avventura come talent scout"
+"Una volta creata la tua etichetta discografica, inizierà la tua avventura "
+"come talent scout"
 
 #: users/templates/label/create_your_label.html:29
 msgid "Create new label"
@@ -263,7 +190,8 @@ msgstr "PIT settimanali"
 msgid ""
 "Every week the artists will earn you royalties which you will get as PITs"
 msgstr ""
-"Ogni settimana gli artisti ti guadagneranno royalty che riceverai sotto forma di PIT"
+"Ogni settimana gli artisti ti guadagneranno royalty che riceverai sotto "
+"forma di PIT"
 
 #: users/templates/label/step5.html:4
 msgid "Sell Artists"
@@ -278,8 +206,11 @@ msgstr ""
 "vendere un artista per ottenere qualche profitto"
 
 #: users/templates/label/step6.html:7
-msgid "Join the Parterre world: compete, have fun, and trade PITs for great prizes!"
-msgstr "Entra nel mondo di Parterre: competi, divertiti e scambia PIT per ottenere premi fantastici!"
+msgid ""
+"Join the Parterre world: compete, have fun, and trade PITs for great prizes!"
+msgstr ""
+"Entra nel mondo di Parterre: competi, divertiti e scambia PIT per ottenere "
+"premi fantastici!"
 
 #: users/templates/label/step_complete.html:9
 msgid "Ready to start?"
@@ -338,7 +269,9 @@ msgid "Reset complete"
 msgstr "Reset completo"
 
 #: users/templates/registration/password_reset_complete.html:12
-msgid "Your password has been set. You may go ahead and log in now."
+#, fuzzy
+#| msgid "Your password has been set. You may go ahead and log in now."
+msgid "Your password has been set.  You may go ahead and log in now."
 msgstr "La tua password è stata impostata. Puoi procedere con l'accesso ora."
 
 #: users/templates/registration/password_reset_complete.html:18
@@ -355,12 +288,17 @@ msgid "Reset password"
 msgstr "Reimposta password"
 
 #: users/templates/registration/password_reset_confirm.html:30
+#, fuzzy
+#| msgid ""
+#| "The password reset link was invalid, possibly because it has already been "
+#| "used. Please request a new password reset."
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
-"used. Please request a new password reset."
+"used.  Please request a new password reset."
 msgstr ""
-"Il link di reimpostazione della password non è valido, probabilmente perché è già stato "
-"utilizzato. Per favore, richiedi una nuova reimpostazione della password."
+"Il link di reimpostazione della password non è valido, probabilmente perché "
+"è già stato utilizzato. Per favore, richiedi una nuova reimpostazione della "
+"password."
 
 #: users/templates/registration/password_reset_done.html:5
 msgid "Password reset"
@@ -379,8 +317,8 @@ msgid ""
 "If you don’t receive an email, please make sure you’ve entered the address "
 "you registered with, and check your spam folder."
 msgstr ""
-"Se non ricevi un'email, assicurati di aver inserito l'indirizzo "
-"con cui ti sei registrato e controlla la cartella spam."
+"Se non ricevi un'email, assicurati di aver inserito l'indirizzo con cui ti "
+"sei registrato e controlla la cartella spam."
 
 #: users/templates/registration/password_reset_form.html:5
 msgid "Forgot your password?"
@@ -398,6 +336,10 @@ msgstr "Inserisci la tua email"
 msgid "Welcome"
 msgstr "Benvenuto"
 
+#: users/templates/registration/register.html:13
+msgid "Sign Up"
+msgstr "Registrati"
+
 #: users/templates/registration/register.html:17
 msgid "Already registred?"
 msgstr "Già registrato?"
@@ -406,13 +348,19 @@ msgstr "Già registrato?"
 msgid "Login here"
 msgstr "Accedi qui"
 
-#: utils/templates/utils/navbar/navbar.html:47
-msgid "sign in"
-msgstr "accedi"
+#: utils/templates/utils/footer/footer.html:33
+msgid "Build Your Own Indie Music Label and Get Rewarded"
+msgstr "Crea la tua etichetta musicale indie e ottieni ricompense"
 
-#: utils/templates/utils/navbar/navbar.html:51
-msgid "sign up"
-msgstr "registrati"
+#: utils/templates/utils/navbar/navbar.html:49
+#, fuzzy
+#| msgid "Login"
+msgid "login"
+msgstr "Accedi"
+
+#: utils/templates/utils/navbar/navbar.html:53
+msgid "iscriviti"
+msgstr ""
 
 #: utils/views.py:34
 msgid "dashboard"
@@ -425,3 +373,82 @@ msgstr "esplora"
 #: utils/views.py:36
 msgid "marketplace"
 msgstr "mercato"
+
+#~ msgid "Invest in Indie Artists and Rise to the Top of the Music Industry"
+#~ msgstr "Investi in artisti indie e sali in cima all'industria musicale"
+
+#~ msgid "How does it work?"
+#~ msgstr "Come funziona?"
+
+#~ msgid ""
+#~ "Create your account on Parterre Music and start exploring our platform. "
+#~ "It's free to sign up and you can start building your music label right "
+#~ "away!"
+#~ msgstr ""
+#~ "Crea il tuo account su Parterre Music e inizia a esplorare la nostra "
+#~ "piattaforma. È gratuito registrarsi e puoi iniziare subito a costruire la "
+#~ "tua etichetta musicale!"
+
+#~ msgid "Discover Artists"
+#~ msgstr "Scopri artisti"
+
+#~ msgid ""
+#~ "Invest in your favorite indie artists using PIT tokens. You can buy and "
+#~ "sell artists as you wish, and use your strategic thinking to make smart "
+#~ "investments."
+#~ msgstr ""
+#~ "Investi nei tuoi artisti indie preferiti utilizzando i token PIT. Puoi "
+#~ "comprare e vendere artisti come desideri e utilizzare il tuo pensiero "
+#~ "strategico per fare investimenti intelligenti."
+
+#~ msgid "Monitor Performance"
+#~ msgstr "Monitora le prestazioni"
+
+#~ msgid ""
+#~ "Keep an eye on your artists' performance on different music charts and "
+#~ "social media platforms. Parterre Music's algorithm will calculate a score "
+#~ "for each artist every week, based on various factors, and you can use "
+#~ "this information to make informed decisions about your investments."
+#~ msgstr ""
+#~ "Tieni d'occhio le performance dei tuoi artisti su diverse classifiche "
+#~ "musicali e piattaforme di social media. L'algoritmo di Parterre Music "
+#~ "calcolerà un punteggio per ogni artista ogni settimana, basato su vari "
+#~ "fattori, e potrai utilizzare queste informazioni per prendere decisioni "
+#~ "informate sui tuoi investimenti."
+
+#~ msgid "Gain Rewards"
+#~ msgstr "Guadagna ricompense"
+
+#~ msgid ""
+#~ "As your artists gain popularity and rise up the charts, you'll earn "
+#~ "rewards in the form of PIT tokens. These tokens can be used to buy more "
+#~ "artists, or cashed out for real money."
+#~ msgstr ""
+#~ "Alla crescita di popolarità dei tuoi artisti e al loro salire nelle "
+#~ "classifiche, guadagnerai ricompense sotto forma di token PIT. Questi "
+#~ "token possono essere utilizzati per comprare più artisti o convertiti in "
+#~ "denaro reale."
+
+#~ msgid "Rise to the Top"
+#~ msgstr "Sali in cima"
+
+#~ msgid ""
+#~ "With smart investments and a keen eye for talent, you can rise to the top "
+#~ "of the music industry and become a leading music label owner. Parterre "
+#~ "Music is the perfect platform for music enthusiasts and entrepreneurs "
+#~ "looking to make their mark in the industry."
+#~ msgstr ""
+#~ "Con investimenti intelligenti e un occhio attento al talento, puoi salire "
+#~ "in cima all'industria musicale e diventare un proprietario di "
+#~ "un'etichetta discografica di successo. Parterre Music è la piattaforma "
+#~ "perfetta per gli appassionati di musica e gli imprenditori che cercano di "
+#~ "lasciare il loro segno nell'industria."
+
+#~ msgid "how it works"
+#~ msgstr "come funziona"
+
+#~ msgid "sign in"
+#~ msgstr "accedi"
+
+#~ msgid "sign up"
+#~ msgstr "registrati"
