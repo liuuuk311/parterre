@@ -105,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = "it-IT"
 LANGUAGES = [
     ('it', _('Italian')),
-    ('en', _('English')),
+    # ('en', _('English')),
 ]
 LOCALE_PATHS = [BASE_DIR / "locale"]
 
