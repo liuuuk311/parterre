@@ -16,5 +16,5 @@ class DashboardView(LoginRequiredMixin, AppContextMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['artists'] = Artist.objects.filter(stage_name__isnull=False).all()
+        context['artists'] = Artist.objects.filter(stage_name__isnull=False).all()[:5]
         return context
