@@ -46,6 +46,8 @@ services:
       - SPOTIFY_DC_COOKIE=${SPOTIFY_DC_COOKIE}
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_TO_CHAT=${TELEGRAM_TO_CHAT}
     volumes:
       - static_volume:/web/staticfiles/
       - media:/web/media/
@@ -94,6 +96,8 @@ services:
       - SPOTIFY_DC_COOKIE=${SPOTIFY_DC_COOKIE}
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_TO_CHAT=${TELEGRAM_TO_CHAT}
     depends_on:
       - redis
       - db

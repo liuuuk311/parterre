@@ -181,3 +181,5 @@ AWS_S3_CUSTOM_DOMAIN = "parterre.fra1.cdn.digitaloceanspaces.com"
 
 TELEGRAM_BOT_TOKEN = env('TELEGRAM_BOT_TOKEN')
 TELEGRAM_TO_CHAT = env('TELEGRAM_TO_CHAT')
+
+TELEGRAM_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage?chat_id={TELEGRAM_TO_CHAT}&text="

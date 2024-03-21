@@ -40,7 +40,6 @@ def upload_to_spaces(file_name, file_content):
             Key=file_name,
             ExtraArgs={'ACL': 'public-read'}  
         )
-        print(f"File uploaded successfully {file_name}")
     except NoCredentialsError:
         print("Credentials not available")
     except Exception as e:
