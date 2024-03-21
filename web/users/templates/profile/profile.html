@@ -9,7 +9,25 @@
 {% block content %}
     {{ block.super }}
     {% include "profile/transactions.html" %}
-    <a href="{% url 'logout' %}">
-        {% translate "Logout" %}
-    </a>
+    <hr class="my-8">
+    <h2 class="text-3xl font-bold mb-4">{% translate "Settings" %}</h2>
+    <form action="{% url 'set_language' %}" method="post" class="flex justify-start items-center">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ redirect_to }}">
+        <label for="language" class="mr-4">{% translate "Language" %}</label>
+        <select name="language" onchange="this.form.submit()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            {% get_current_language as CURRENT_LANGUAGE %}
+            {% get_available_languages as LANGUAGES %}
+            {% for lang_code, lang_name in LANGUAGES %}
+                <option value="{{ lang_code }}" {% if lang_code == CURRENT_LANGUAGE %}selected{% endif %}>
+                    {{ lang_name|capfirst }}
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+    <div class="mt-4 flex justify-end items-end">
+    {% translate "logout" as  logout %}
+    {% url 'logout' as logout_url %}
+    {% include "utils/buttons/secondary_button.html" with label=logout href=logout_url %}
+    </div>
 {% endblock %}
