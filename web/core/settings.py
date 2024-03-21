@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.locale.LocaleMiddleware",
+    # "django.middleware.locale.LocaleMiddleware", # This will set the language based on the user's browser
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -103,10 +103,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
-LANGUAGE_CODE = "it-IT"
+LANGUAGE_CODE = "it" # This will set the default language to Italian
 LANGUAGES = [
     ('it', _('Italian')),
-    # ('en', _('English')),
+    ('en', _('English')),
 ]
 LOCALE_PATHS = [BASE_DIR / "locale"]
 
