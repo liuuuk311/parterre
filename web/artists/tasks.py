@@ -9,7 +9,7 @@ from django.utils import timezone
 from artists.models import Artist, ArtistPopularity, Track, TrackPopularity
 from spotify.clients import SpotifyAPI, SpotifyPartnerAPI
 from core.storage import upload_to_spaces
-from web.core.telegram import send_message_to_telegram
+from core.telegram import send_message_to_telegram
 
 client = SpotifyAPI()
 private_client = SpotifyPartnerAPI()
