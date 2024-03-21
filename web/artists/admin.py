@@ -38,7 +38,7 @@ class ArtistAdmin(admin.ModelAdmin):
     list_filter = ['stage_name', ]
 
     def import_artist_data_from_spotify(self, request, queryset):
-        import_artist_data.delay(list(queryset.values_list('id', flat=True)))
+        import_artist_data.delay(list(queryset.values_list('id', flat=True)), notify_on_complete=True, user=request.user.username)
         self.message_user(
             request,
             f"The system will import spotify data for {queryset.count()} artists in the background",
@@ -46,7 +46,7 @@ class ArtistAdmin(admin.ModelAdmin):
         )
 
     def import_top_tracks_from_spotify(self, request, queryset):
-        import_top_tracks.delay(list(queryset.values_list('id', flat=True)))
+        import_top_tracks.delay(list(queryset.values_list('id', flat=True)), notify_on_complete=True, user=request.user.username)
         self.message_user(
             request,
             f"The system will import the top tracks on spotify for {queryset.count()} artists in the background",

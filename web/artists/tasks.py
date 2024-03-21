@@ -9,13 +9,14 @@ from django.utils import timezone
 from artists.models import Artist, ArtistPopularity, Track, TrackPopularity
 from spotify.clients import SpotifyAPI, SpotifyPartnerAPI
 from core.storage import upload_to_spaces
+from web.core.telegram import send_message_to_telegram
 
 client = SpotifyAPI()
 private_client = SpotifyPartnerAPI()
 
 
 @shared_task
-def import_artist_data(artist_ids):
+def import_artist_data(artist_ids, notify_on_complete=False, user="System"):
     for artist in Artist.objects.filter(id__in=artist_ids):
         data = client.get_artist(artist.spotify_id)
 
@@ -55,10 +56,13 @@ def import_artist_data(artist_ids):
                 artist=artist,
             )
             pop.save()
+    
+    if notify_on_complete:
+        send_message_to_telegram(f"{user} imported data for {len(artist_ids)} artists")
 
 
 @shared_task
-def import_top_tracks(artist_ids):
+def import_top_tracks(artist_ids, notify_on_complete=False, user="System"):
     for artist in Artist.objects.filter(id__in=artist_ids):
         data = client.get_artists_top_tracks(artist.spotify_id)
         for track_data in data.get('tracks'):
@@ -79,7 +83,9 @@ def import_top_tracks(artist_ids):
                     track=track,
                 )
                 pop.save()
-
+    
+    if notify_on_complete:
+        send_message_to_telegram(f"{user} imported data for {len(artist_ids)} artists")
 
 @shared_task
 def update_all_active_artists():
@@ -87,5 +93,5 @@ def update_all_active_artists():
         deleted_at__isnull=True
     ).values_list('id', flat=True)
 
-    import_artist_data(list(artist_ids))
-    import_top_tracks(list(artist_ids))
+    import_artist_data(list(artist_ids), notify_on_complete=True)
+    import_top_tracks(list(artist_ids), notify_on_complete=True)
