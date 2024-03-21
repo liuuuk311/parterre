@@ -8,6 +8,7 @@ from django.utils import timezone
 
 from artists.models import Artist, ArtistPopularity, Track, TrackPopularity
 from spotify.clients import SpotifyAPI, SpotifyPartnerAPI
+from core.storage import upload_to_spaces
 
 client = SpotifyAPI()
 private_client = SpotifyPartnerAPI()
@@ -26,12 +27,14 @@ def import_artist_data(artist_ids):
             img_temp.write(response.read())
             img_temp.flush()
 
-        artist.image.save(
-            f'{artist.stage_name}_{artist.spotify_id}_{int(time.time())}.jpg',
-            File(img_temp),
-        )
+        file_name = f'{artist.stage_name}_{artist.spotify_id}.jpg'
+        img_temp.seek(0)
 
+        upload_to_spaces(file_name, img_temp)
+        artist.image = file_name
         artist.save()
+
+        img_temp.close() 
         last_popularity = artist.popularity_history.last()
         if not last_popularity or (
             last_popularity and (timezone.now() - last_popularity.created_at).days > 6
