@@ -9,7 +9,7 @@
     {{ block.super }}
     <h1 class="text-5xl my-8 capitalize font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">{{ genre }}</h1>
     <div class="flex flex-col gap-4 mt-16">
-        {% for artist in artists|slice:":10" %}
+        {% for artist in artists %}
             <a href="{% url 'artist-detail' artist.pk %}" class="rounded-lg shadow-lg w-full dark:bg-gray-800">
                 <div class="px-6 py-4 flex flex-row gap-8 items-center justify-between">
                     <img class="object-center w-12 h-12 object-scale-down rounded-full" src="

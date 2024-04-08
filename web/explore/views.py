@@ -34,6 +34,6 @@ class GenreView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['artists'] = Artist.objects.filter(
             genres__name=self.kwargs['genre']
-        )
+        ).order_by('stage_name')
         context['genre'] = self.kwargs['genre']
         return context
