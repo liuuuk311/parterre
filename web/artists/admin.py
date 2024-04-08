@@ -1,4 +1,8 @@
+import csv
+
 from django.contrib import admin, messages
+from django.http import HttpResponse
+
 from artists.models import Artist, Profile, ArtistPopularity, Track, Genre
 from artists.tasks import import_artist_data, import_top_tracks
 
@@ -34,8 +38,9 @@ class TrackInline(admin.TabularInline):
 class ArtistAdmin(admin.ModelAdmin):
     fields = ('spotify_url', 'stage_name', 'image', 'bio', 'force_visible', 'genres')
     inlines = [ArtistProfileInline, ArtistPopularityInline, TrackInline]
-    actions = ['import_artist_data_from_spotify', 'import_top_tracks_from_spotify']
+    actions = ['import_artist_data_from_spotify', 'import_top_tracks_from_spotify', "export_as_csv"]
     list_filter = ['stage_name', ]
+    export_fields = ["id", "stage_name", "spotify_url", "genre_name_list"]
 
     def import_artist_data_from_spotify(self, request, queryset):
         import_artist_data.delay(list(queryset.values_list('id', flat=True)), notify_on_complete=True, user=request.user.username)
@@ -52,6 +57,21 @@ class ArtistAdmin(admin.ModelAdmin):
             f"The system will import the top tracks on spotify for {queryset.count()} artists in the background",
             messages.SUCCESS,
         )
+
+    def export_as_csv(self, request, queryset):
+        meta = self.model._meta
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename={}.csv'.format(meta)
+        writer = csv.writer(response)
+
+        writer.writerow(self.export_fields)
+        for obj in queryset:
+            writer.writerow([getattr(obj, field) for field in self.export_fields])
+
+        return response
+
+    export_as_csv.short_description = "Esporta selezionati"
 
 
 admin.site.register(Artist, ArtistAdmin)

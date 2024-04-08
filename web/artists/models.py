@@ -75,6 +75,10 @@ class Artist(UUIDModel, TimestampedModel):
             and self.popularity_history.last().parterre_score < 8
         )
 
+    @property
+    def genre_name_list(self):
+        return ', '.join([genre.name for genre in self.genres.all()])
+
 
 class Profile(models.Model):
     SOCIAL_MEDIA_CHOICES = (
