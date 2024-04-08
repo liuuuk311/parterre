@@ -45,7 +45,19 @@ class CreateContactView(SuccessMessageMixin, CreateView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
-    
+
+
+class ContactView(WebsiteContextMixin, TemplateView):
+    template_name = "parterre/contact.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = ContactForm()
+        return context
+
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
 
 class SuccessContactView(WebsiteContextMixin, TemplateView):
     template_name = "parterre/success_contact.html"
