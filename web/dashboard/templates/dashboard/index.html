@@ -8,6 +8,9 @@
 
 {% block content %}
     {{ block.super }}
+		<div class="mb-4">
+			Nuova sezione DA CAMBIARE IL TESTO
+		</div>
     {% if user.has_label %}
         {% include "dashboard/your_label.html" %}
         {% include "dashboard/trending_artists.html" %}
