@@ -13,7 +13,7 @@
             {% endif %}
         </p>
 
-        <div class="flex justify-center gap-8">
+        <div class="grid lg:grid-cols-5 grid-cols-1 gap-8">
             {% for artist in user.label.artists.all %}
                 <a class="flex flex-col gap-3 items-center justify-between" href="{% url 'artist-detail' artist.pk %}">
                     <img class="object-center w-12 h-12 object-scale-down rounded-full" src="
