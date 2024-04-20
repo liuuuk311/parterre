@@ -2,19 +2,19 @@
 
 
 <div class="flex flex-col bg-white dark:bg-gray-800 m-auto p-auto">
-    <h1 class="text-5xl my-8 capitalize font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">
+    <h1 class="lg:text-5xl text-2xl  my-8 capitalize font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">
         {% translate "Trending artists" %}
     </h1>
     <div class="flex flex-col gap-4">
         {% for artist in artists|slice:":10" %}
             <a href="{% url 'artist-detail' artist.pk %}" class="rounded-lg shadow-lg w-full dark:bg-gray-800">
-                <div class="px-6 py-4 flex flex-row gap-8 items-center justify-between">
+                <div class="px-6 py-4 flex flex-row gap-4 items-center">
                     <img class="object-center w-12 h-12 object-scale-down rounded-full" src="
                             {% if artist.image %}{{ artist.image.url }}{% else %}https://placehold.co/600x400{% endif %}"
                          alt="{{ artist.stage_name }}">
                     <h1 class="text-md flex-grow md:text-2xl font-semibold text-gray-800 dark:text-white">{{ artist.stage_name|truncatechars:10 }}</h1>
                     {% with artist.get_percentage as percentage %}
-                        <h3 class="md:text-2xl text-lg font-extrabold {% if percentage > 0 %}text-green-600{% else %}text-red-500{% endif %}">{{ percentage }}%</h3>
+                        <h3 class="flex-end md:text-2xl text-lg font-extrabold {% if percentage > 0 %}text-green-600{% else %}text-red-500{% endif %}">{{ percentage }}%</h3>
                     {% endwith %}
                 </div>
             </a>
