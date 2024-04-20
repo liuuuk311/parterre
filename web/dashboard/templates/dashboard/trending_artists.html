@@ -12,9 +12,9 @@
                     <img class="object-center w-12 h-12 object-scale-down rounded-full" src="
                             {% if artist.image %}{{ artist.image.url }}{% else %}https://placehold.co/600x400{% endif %}"
                          alt="{{ artist.stage_name }}">
-                    <h1 class="text-xl flex-grow md:text-2xl font-semibold text-gray-800 dark:text-white">{{ artist.stage_name }}</h1>
+                    <h1 class="text-md flex-grow md:text-2xl font-semibold text-gray-800 dark:text-white">{{ artist.stage_name|truncatechars:10 }}</h1>
                     {% with artist.get_percentage as percentage %}
-                        <h3 class="md:text-2xl text-xl font-extrabold {% if percentage > 0 %}text-green-600{% else %}text-red-500{% endif %}">{{ percentage }}%</h3>
+                        <h3 class="md:text-2xl text-lg font-extrabold {% if percentage > 0 %}text-green-600{% else %}text-red-500{% endif %}">{{ percentage }}%</h3>
                     {% endwith %}
                 </div>
             </a>

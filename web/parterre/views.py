@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 
 from parterre.forms import ContactForm
 from parterre.models import Contact
+from utils.views import AppContextMixin
 
 
 class WebsiteContextMixin(TemplateView):
@@ -47,7 +48,7 @@ class CreateContactView(SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class ContactView(WebsiteContextMixin, TemplateView):
+class ContactView(AppContextMixin, TemplateView):
     template_name = "parterre/contact.html"
 
     def get_context_data(self, **kwargs):
