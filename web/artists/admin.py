@@ -5,6 +5,7 @@ from django.http import HttpResponse
 
 from artists.models import Artist, Profile, ArtistPopularity, Track, Genre
 from artists.tasks import import_artist_data, import_top_tracks
+from spotify.clients import SpotifyAPI
 
 
 class ArtistProfileInline(admin.TabularInline):
@@ -38,7 +39,7 @@ class TrackInline(admin.TabularInline):
 class ArtistAdmin(admin.ModelAdmin):
     fields = ('spotify_url', 'stage_name', 'image', 'bio', 'force_visible', 'genres')
     inlines = [ArtistProfileInline, ArtistPopularityInline, TrackInline]
-    actions = ['import_artist_data_from_spotify', 'import_top_tracks_from_spotify', "export_as_csv"]
+    actions = ['import_artist_data_from_spotify', 'import_top_tracks_from_spotify', "export_as_csv", "spotify_genre_list"]
     list_filter = ['stage_name', ]
     export_fields = ["id", "stage_name", "spotify_url", "genre_name_list"]
 
@@ -73,6 +74,22 @@ class ArtistAdmin(admin.ModelAdmin):
 
     export_as_csv.short_description = "Esporta selezionati"
 
+    def spotify_genre_list(self, request, queryset):
+        meta = self.model._meta
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename={}.csv'.format(meta)
+        writer = csv.writer(response)
+        client = SpotifyAPI()
+
+        writer.writerow(['stage_name', 'spotify_genres'])
+        for obj in queryset:
+            artist_json = client.get_artist(obj.spotify_id)
+            writer.writerow([obj.stage_name, ', '.join(artist_json['genres'])])
+
+        return response
+
+    spotify_genre_list.short_description = "Esporta generi da Spotify"
 
 admin.site.register(Artist, ArtistAdmin)
 admin.site.register(Genre)
