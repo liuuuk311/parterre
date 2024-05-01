@@ -37,7 +37,7 @@ class HomeView(WebsiteContextMixin):
 
 
 class CreateContactView(SuccessMessageMixin, CreateView):
-    success_message = "Your message was sent successfully"
+    success_message = "Messaggio inviato correttamente 👍"
     model = Contact
     form_class = ContactForm
     template_name = "parterre/home.html"

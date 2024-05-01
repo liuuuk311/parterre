@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <section>
-    <h2 class="text-5xl my-8 capitalize font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">{% translate "Genres" %}</h2>
+    <h2 class="text-5xl my-8 capitalize font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200"><!--{% translate "Genres" %}--> Artisti</h2>
     <div class="grid grid-cols-2 gap-8">
         {% for g in genres %}
             <a class="rounded-lg shadow-lg px-8 py-12 text-2xl text-center font-black" href="{% url 'genre' g.name %}">{{ g.name }}</a>

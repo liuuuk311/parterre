@@ -10,7 +10,7 @@ class ExploreSearchForm(forms.Form):
         required=False,
         widget=forms.TextInput(
             attrs={
-                "placeholder": _("Search for artists..."),
+                "placeholder": _("Cerca artisti..."),
                 "type": "search",
                 "hx-get": "/explore/search",
                 "hx-trigger": "keyup[target.value.length > 3] changed, search, delay:300ms",

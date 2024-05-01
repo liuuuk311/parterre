@@ -7,9 +7,11 @@
         </h2>
         <p class="mt-2 mb-8 text-gray-600 dark:text-gray-300">
             {% if user.label.is_empty %}
-                {% translate "Your record label is empty, you can add add new artists to your roaster" %}
+
+                <!--{% translate "Your record label is empty, you can add add new artists to your roaster" %}-->
+                La tua etichetta è vuota, puoi aggiungere un artista al tuo roaster
             {% else %}
-                {% translate "Your label has" %} {{ user.label.artists.count }} {% translate "artists" %}
+                <!--{% translate "Your label has" %}--> La tua etichetta:  {{ user.label.artists.count }} {% translate "artists" %}
             {% endif %}
         </p>
 
@@ -33,7 +35,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
                     </svg>
                     <h3 class="text-lg flex-grow md:text-2xl font-light text-gray-800 dark:text-white">
-                        {% translate "Add new artist" %}
+                        <!--{% translate "Add new artist" %}-->
+                        Aggiungi artista
                     </h3>
                 </a>
             {% endif %}

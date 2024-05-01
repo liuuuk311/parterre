@@ -32,7 +32,7 @@ class AppContextMixin(ContextMixin):
         context = super().get_context_data(**kwargs)
         context["menu_items"] = [
             {'label': _('dashboard'), 'url': reverse_lazy('dashboard')},
-            {'label': _('explore'), 'url': reverse_lazy('explore')},
+            {'label': _('esplora'), 'url': reverse_lazy('explore')},
             {'label': _('marketplace'), 'url': reverse_lazy('marketplace')},
         ]
         return context

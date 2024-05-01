@@ -8,11 +8,11 @@
 {% block form_content %}
     {{ form|crispy }}
     <div class="flex items-center justify-between mt-6">
-        <a href="{% url 'password_reset' %}" class="text-gray-600 dark:text-gray-200 hover:text-gray-500">{% translate "Forget password?" %}</a>
+        <a href="{% url 'password_reset' %}" class="text-gray-600 dark:text-gray-200 hover:text-gray-500"><!--{% translate "Forget password?" %}--> Password dimenticata?</a>
         {% translate "Sign In" as button_label %}
         {% include "utils/buttons/primary_button.html" with label=button_label submit=True %}
     </div>
     <p class="mt-6 text-gray-600 dark:text-gray-200 hover:text-gray-500 text-center">
-        {% translate "New to Parterre?" %} <a href="{% url 'signup' %}" class="text-blue-900 font-medium">{% translate "Create a free account" %}</a>
+        <!--{% translate "New to Parterre?" %}--> Nuovo su Parterre? <a href="{% url 'signup' %}" class="text-blue-900 font-medium"><!--{% translate "Create a free account" %}--> Crea un account</a>
     </p>
 {% endblock %}
