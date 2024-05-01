@@ -11,7 +11,7 @@
                 <!--{% translate "Your record label is empty, you can add add new artists to your roaster" %}-->
                 La tua etichetta è vuota, puoi aggiungere un artista al tuo roaster
             {% else %}
-                <!--{% translate "Your label has" %}--> La tua etichetta:  {{ user.label.artists.count }} {% translate "artists" %}
+                <!--{% translate "Your label has" %}--> La tua etichetta:  {{ user.label.artists.count }} <!-- {% translate "artists" %}--> Artisti
             {% endif %}
         </p>
 

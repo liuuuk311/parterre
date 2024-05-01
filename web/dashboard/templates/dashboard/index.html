@@ -9,7 +9,19 @@
 {% block content %}
     {{ block.super }}
 		<div class="mb-4">
-			Nuova sezione DA CAMBIARE IL TESTO
+            
+            <div class="mx-auto px-8 py-4 my-8 bg-white rounded-lg shadow-md dark:bg-gray-800"> 
+
+                <h2 href="#"
+                        class="text-3xl capitalize font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">
+                        Benvenuto su Parterre!
+                </h2>
+
+
+                
+                <br />
+                🔍 Diventa un talent scout 💿 Crea la tua etichetta 🎁 Vinci fantastici premi!
+
 		</div>
     {% if user.has_label %}
         {% include "dashboard/your_label.html" %}
