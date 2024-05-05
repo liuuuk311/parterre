@@ -9,7 +9,7 @@
 {% block content %}
     {{ block.super }}
     <div class="max-w-3xl mx-auto text-center">
-        <h1 class="text-4xl capitalize font-extrabold text-gray-700 dark:text-white my-8"><!--{% translate "Welcome to Parterre" %}--> Benvenuto su Parterre! 🎶 </h1>
+        <h1 class="text-4xl capitalize font-extrabold text-gray-700 dark:text-white my-8">Benvenuto su Parterre! 🎶 </h1>
 
         <form method="post">
             {% csrf_token %}
@@ -17,20 +17,16 @@
                 <h2 href="#"
                     class="text-2xl uppercase font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200">
                     Crea la tua etichetta
-                    <!--{% translate "Create your record label" %}-->
                 </h2>
                 <p class="my-4 text-gray-600 dark:text-gray-300">
-
                     Una volta creata l'etichetta, inizierà la tua avventura da talent scout!
-                    <!--  {% translate "Once you created your record label, you're talent scout adventure will begin" %} -->
-                    
                 </p>
                 {{ form|crispy }}
             </div>
 
 
             <div class="flex items-center justify-end mt-12">
-                {% translate "Create new label" as create_new_label %}
+                {% translate "Crea la tua etichetta" as create_new_label %}
                 {% include "utils/buttons/primary_button.html" with label=create_new_label submit=True %}
             </div>
         </form>

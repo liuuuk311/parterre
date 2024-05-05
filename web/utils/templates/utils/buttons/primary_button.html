@@ -1,4 +1,4 @@
-{% with btn_css="flex items-center px-6 py-3 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-900 rounded-lg hover:bg-blue-800 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50" %}
+{% with btn_css="flex items-center justify-center w-full lg:w-auto text-center px-6 py-3 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-900 rounded-lg hover:bg-blue-800 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50" %}
 {% if icon %}
     {% with btn_css=btn_css|add:" pl-2 pr-4" %}
         {% include "utils/buttons/_base_button.html" with icon=icon href=href submit=submit method=method endpoint=endpoint target=target trigger=trigger swap=swap swap_oob=swap_oob label=label btn_css=btn_css %}

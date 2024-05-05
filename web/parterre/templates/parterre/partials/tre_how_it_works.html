@@ -1,30 +1,30 @@
 <section class="dark:bg-gray-800 body-font overflow-hidden bg-sky-200" id="how-it-works">
-    <div class="container px-5 pt-12 lg:pt-24 mx-auto">
-      <div class="flex flex-wrap lg:-m-12">
-        <div class="p-12 md:w-1/2 flex flex-col items-start  hidden lg:flex">
-            <div class="flex items-center flex-wrap pb-4 mb-4 mt-auto w-full">
-          </div>
-          <a class="inline-flex items-center">
-            <img src="https://parterre.fra1.cdn.digitaloceanspaces.com/public/ragazzi_maglietta_gialla.png" alt="mockup"> 
-          </a>
-        </div>
-        <div class="lg:p-12 md:w-1/2 flex flex-col items-start">
-          
-            <h1 class="max-w-2xl mb-4 lg:mt-12 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">Come funziona?</h1>
-            <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">1. Iscriviti alla piattaforma.<br>
-            2. Scopri nuova musica su Parterre.<br>
-            3. Crea la tua etichetta e componi il tuo roster.<br>
-            4. Supporta i tuoi artisti e vinci fantastici premi.<br></p>
-          <div class="flex items-center flex-wrap pb-4 mb-4 mt-auto w-full">
-            <div class="flex flex-row text-center gap-x-3">
-              {% url 'signup' as sign_up_url %}
-              {% include "utils/buttons/primary_button.html" with label="Iscriviti" href=sign_up_url %}
-            </div>
-          </div>
-          
-            
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+	<div class="container px-5 pt-12 lg:pt-24 mx-auto">
+		<div class="flex flex-wrap lg:-m-12">
+			<div class="p-12 md:w-1/2 flex-col items-start md:flex hidden">
+				<div class="flex items-center flex-wrap pb-4 mb-4 mt-auto w-full">
+				</div>
+				<a class="inline-flex items-center">
+					<img src="https://parterre.fra1.cdn.digitaloceanspaces.com/public/ragazzi_maglietta_gialla.png" alt="mockup">
+				</a>
+			</div>
+			<div class="lg:p-12 md:w-1/2 flex flex-col md:items-start">
+
+				<h1
+					class="max-w-2xl mb-4 lg:mt-12 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+					Come funziona?</h1>
+				<p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">1. Iscriviti
+					alla piattaforma.<br>
+					2. Scopri nuova musica su Parterre.<br>
+					3. Crea la tua etichetta e componi il tuo roster.<br>
+					4. Supporta i tuoi artisti e vinci fantastici premi.<br></p>
+				<div class="flex flex-row gap-x-3 pb-12">
+					{% url 'signup' as sign_up_url %}
+					{% include "utils/buttons/primary_button.html" with label="Iscriviti" href=sign_up_url %}
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</section>
