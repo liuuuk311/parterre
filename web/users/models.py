@@ -106,7 +106,7 @@ class Transaction(models.Model):
     TRANSACTION_TYPE = (
         (DEPOSIT, "Venduto"),
         (WITHDRAW, "Acquistato"),
-        (ROYALATY, "Royalty"),
+        (ROYALATY, "Royalties settimanali"),
     )
 
     wallet = models.ForeignKey(
@@ -119,6 +119,9 @@ class Transaction(models.Model):
     amount = models.IntegerField()
     notes = models.CharField(max_length=256, null=True, blank=True, default=None)
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-timestamp',)
 
 
 class RecordLabel(models.Model):

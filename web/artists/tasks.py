@@ -135,6 +135,6 @@ def assign_pit_to_users():
                 + (performance_data.get("new_tracks_count") * new_tracks_multiplier)
             )
             user.wallet.add_to_balance(
-                pit, notes=f"Royalty settimanali", artist=artist, transaction_type=Transaction.ROYALATY
+                pit, notes=f"Royalties settimanali", artist=artist, transaction_type=Transaction.ROYALATY
             )
             user.wallet.save()
