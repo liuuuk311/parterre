@@ -16,7 +16,7 @@
         {% for transaction in user.wallet.transactions.all %}
         <li class="rounded-lg shadow-lg w-full dark:bg-gray-800">
             <div class="px-6 py-4 flex flex-row gap-8 items-center justify-between">
-            <span>{{ transaction.get_transaction_type_display }} <a class="font-semibold" href="">{{ transaction.artist.stage_name|truncatechars:10 }}</a></span>
+							<span class="font-light">{{ transaction.timestamp|date }}</span><span> {{ transaction.get_transaction_type_display }} <a class="font-semibold" href="">{{ transaction.artist.stage_name|truncatechars:10 }}</a></span>
                 {% if transaction.transaction_type == "withdraw" %}
                     <span class="font-bold text-red-500">- {{ transaction.amount }} PIT</span>
                 {% else %}
