@@ -117,7 +117,7 @@ def assign_pit_to_users():
                 performance_percentage_total += track.percentage_over_last_week
 
         artist_performance[artist] = {
-            "performance": performance_percentage_total / (artist.tracks.count() - new_tracks_count),
+            "performance": performance_percentage_total / max(artist.tracks.count() - new_tracks_count, 1),
             "new_tracks_count": new_tracks_count,
         }
 
