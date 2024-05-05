@@ -140,8 +140,8 @@ class Track(UUIDModel):
         current_popularity = self.popularity_history.all().order_by('-created_at')[0]
         last_week_popularity = self.popularity_history.all().order_by('-created_at')[1]
         return (
-            (current_popularity.spotify_plays - last_week_popularity.spotify_plays)
-            / last_week_popularity.spotify_plays * 100
+            (max(current_popularity.spotify_plays, 1) - max(last_week_popularity.spotify_plays, 1)
+            / max(last_week_popularity.spotify_plays, 1) * 100
         )
 
 
