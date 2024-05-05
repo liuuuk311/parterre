@@ -60,13 +60,16 @@ class Wallet(models.Model):
     balance = models.PositiveIntegerField(default=1000)
 
     def add_to_balance(
-        self, amount: int, notes: Optional[str] = None, artist: Optional[Artist] = None
+        self, amount: int, notes: Optional[str] = None, artist: Optional[Artist] = None, transaction_type: Optional[str] = None
     ):
+        if not transaction_type:
+            transaction_type = Transaction.DEPOSIT
+
         self.balance += amount
         self.save()
         self.transactions.add(
             Transaction(
-                transaction_type=Transaction.DEPOSIT,
+                transaction_type=transaction_type,
                 amount=amount,
                 notes=notes,
                 artist=artist,
@@ -98,12 +101,12 @@ class Wallet(models.Model):
 class Transaction(models.Model):
     DEPOSIT = "deposit"
     WITHDRAW = "withdraw"
-    ROYLATY = "royalty"
+    ROYALATY = "royalty"
 
     TRANSACTION_TYPE = (
         (DEPOSIT, "Venduto"),
         (WITHDRAW, "Acquistato"),
-        (ROYLATY, "Royalty"),
+        (ROYALATY, "Royalty"),
     )
 
     wallet = models.ForeignKey(

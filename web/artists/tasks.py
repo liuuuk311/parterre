@@ -11,6 +11,7 @@ from artists.models import Artist, ArtistPopularity, Track, TrackPopularity
 from spotify.clients import SpotifyAPI, SpotifyPartnerAPI
 from core.storage import upload_to_spaces
 from core.telegram import send_message_to_telegram
+from users.models import Transaction
 
 client = SpotifyAPI()
 private_client = SpotifyPartnerAPI()
@@ -126,9 +127,14 @@ def assign_pit_to_users():
 
     for user in users_with_wallet:
         for artist, performance_data in artist_performance.items():
+            if artist not in user.artists.all():
+                continue
+
             pit = (
                 (performance_data.get("performance") * performance_multiplier)
                 + (performance_data.get("new_tracks_count") * new_tracks_multiplier)
             )
-            user.wallet.add_to_balance(pit, notes=f"Royalty settimanali", artist=artist)
+            user.wallet.add_to_balance(
+                pit, notes=f"Royalty settimanali", artist=artist, transaction_type=Transaction.ROYALATY
+            )
             user.wallet.save()
