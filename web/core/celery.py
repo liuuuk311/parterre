@@ -24,4 +24,8 @@ app.conf.beat_schedule = {
         'task': 'artists.tasks.update_all_active_artists',
         'schedule': crontab(hour=7, minute=30, day_of_week=1),
     },
+    'assign-pit-to-users-every-tuesday-morning': {
+        'task': 'artists.tasks.assign_pit_to_users',
+        'schedule': crontab(hour=7, minute=30, day_of_week=2),
+    },
 }

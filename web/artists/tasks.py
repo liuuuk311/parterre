@@ -2,6 +2,7 @@ import time
 from urllib.request import urlopen
 
 from celery import shared_task
+from django.contrib.auth import get_user_model
 from django.core.files import File
 from django.core.files.temp import NamedTemporaryFile
 from django.utils import timezone
@@ -95,3 +96,36 @@ def update_all_active_artists():
 
     import_artist_data(list(artist_ids), notify_on_complete=True)
     import_top_tracks(list(artist_ids), notify_on_complete=True)
+
+
+@shared_task
+def assign_pit_to_users():
+    performance_multiplier = 1
+    new_tracks_multiplier = 1
+
+    artist_performance = {}
+    for artist in Artist.objects.filter(deleted_at__isnull=True):
+        new_tracks_count = 0
+        performance_percentage_total = 0
+        for track in artist.tracks.all():
+            if track.percentage_over_last_week is None:
+                new_tracks_count += 1
+            else:
+                performance_percentage_total += track.percentage_over_last_week
+
+        artist_performance[artist] = {
+            "performance": performance_percentage_total / (artist.tracks.count() - new_tracks_count),
+            "new_tracks_count": new_tracks_count,
+        }
+
+    user_model = get_user_model()
+    users_with_wallet = user_model.objects.filter(wallet__isnull=False)
+
+    for user in users_with_wallet:
+        for artist, performance_data in artist_performance.items():
+            pit = (
+                (performance_data.get("performance") * performance_multiplier)
+                + (performance_data.get("new_tracks_count") * new_tracks_multiplier)
+            )
+            user.wallet.add_to_balance(pit, notes=f"Royalty settimanali", artist=artist)
+            user.wallet.save()

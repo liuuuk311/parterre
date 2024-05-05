@@ -30,7 +30,7 @@ class User(AbstractUser, TimestampedModel):
         if not artist:
             return
 
-        success = self.wallet.buy(artist.current_price, artist=artist)
+        success = self.wallet.sub_from_balance(artist.current_price, artist=artist)
         if not success:
             return
 
@@ -41,7 +41,7 @@ class User(AbstractUser, TimestampedModel):
         if not artist:
             return
 
-        success = self.wallet.sell(artist.current_price, artist=artist)
+        success = self.wallet.add_to_balance(artist.current_price, artist=artist)
         if not success:
             return
 
@@ -59,7 +59,7 @@ class Wallet(models.Model):
     )
     balance = models.PositiveIntegerField(default=1000)
 
-    def sell(
+    def add_to_balance(
         self, amount: int, notes: Optional[str] = None, artist: Optional[Artist] = None
     ):
         self.balance += amount
@@ -75,7 +75,7 @@ class Wallet(models.Model):
         )
         return True
 
-    def buy(
+    def sub_from_balance(
         self, amount: int, notes: Optional[str] = None, artist: Optional[Artist] = None
     ):
         if self.balance < amount:

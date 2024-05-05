@@ -132,6 +132,18 @@ class Track(UUIDModel):
             last_pop.spotify_popularity * self.playlist_set.count() if last_pop else 0
         )
 
+    @property
+    def percentage_over_last_week(self):
+        if self.popularity_history.count() < 2:
+            return None
+
+        current_popularity = self.popularity_history.all().order_by('-created_at')[0]
+        last_week_popularity = self.popularity_history.all().order_by('-created_at')[1]
+        return (
+            (current_popularity.spotify_plays - last_week_popularity.spotify_plays)
+            / last_week_popularity.spotify_plays * 100
+        )
+
 
 class TrackPopularity(models.Model):
     spotify_popularity = models.IntegerField()
