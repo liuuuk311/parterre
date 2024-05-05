@@ -127,7 +127,7 @@ def assign_pit_to_users():
 
     for user in users_with_wallet:
         for artist, performance_data in artist_performance.items():
-            if artist not in user.artists.all():
+            if artist not in user.label.artists.all():
                 continue
 
             pit = (
