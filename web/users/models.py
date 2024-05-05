@@ -98,10 +98,12 @@ class Wallet(models.Model):
 class Transaction(models.Model):
     DEPOSIT = "deposit"
     WITHDRAW = "withdraw"
+    ROYLATY = "royalty"
 
     TRANSACTION_TYPE = (
         (DEPOSIT, "Venduto"),
         (WITHDRAW, "Acquistato"),
+        (ROYLATY, "Royalty"),
     )
 
     wallet = models.ForeignKey(

@@ -107,6 +107,9 @@ def assign_pit_to_users():
     for artist in Artist.objects.filter(deleted_at__isnull=True):
         new_tracks_count = 0
         performance_percentage_total = 0
+        if artist.tracks.count() == 0:
+            continue
+
         for track in artist.tracks.all():
             if track.percentage_over_last_week is None:
                 new_tracks_count += 1
