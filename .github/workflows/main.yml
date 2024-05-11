@@ -53,7 +53,7 @@ jobs:
           username: ${{ secrets.DO_DROPLET_USERNAME }}
           key: ${{ secrets.DO_DROPLET_SSH_KEY }}
           source: nginx/nginx.conf
-          target: deploy/nginx
+          target: deploy/nginx/conf/
 
       - name: SSH into DigitalOcean Droplet and deploy
         uses: appleboy/ssh-action@master
