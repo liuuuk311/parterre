@@ -36,7 +36,7 @@
                 {% include "utils/buttons/primary_button.html" with endpoint=endpoint method="post" target="#action" swap="innerHTML" label="Vendi artista" %}
             </div>
             {% elif user.label.slots_available == 0 %}
-                <p>Acquista uno slot aggiuntivo</p>
+                <p>Non hai più slot disponibili. Libera uno slot vendendo un artista 🤑</p>
             {% else %}
             <div class="flex justify-between items-center" id="action">
                 <span class="title-font font-medium text-2xl text-gray-900">
