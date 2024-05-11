@@ -104,3 +104,8 @@ services:
     depends_on:
       - redis
       - db
+
+volumes:
+  pg-data:
+  static_volume:
+  media:
