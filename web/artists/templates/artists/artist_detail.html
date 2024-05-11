@@ -33,10 +33,10 @@
                 </span>
                 {% translate "Sell artist" as btn_label %}
                 {% url "sell-artist" object.id as endpoint %}
-                {% include "utils/buttons/primary_button.html" with endpoint=endpoint method="post" target="#action" swap="innerHTML" label=btn_label %}
+                {% include "utils/buttons/primary_button.html" with endpoint=endpoint method="post" target="#action" swap="innerHTML" label="Vendi artista" %}
             </div>
             {% elif user.label.slots_available == 0 %}
-                <p>Buy new slot</p>
+                <p>Acquista uno slot aggiuntivo</p>
             {% else %}
             <div class="flex justify-between items-center" id="action">
                 <span class="title-font font-medium text-2xl text-gray-900">
@@ -44,7 +44,7 @@
                 </span>
                 {% translate "Add to your label" as btn_label %}
                 {% url "buy-artist" object.id as endpoint %}
-                {% include "utils/buttons/primary_button.html" with endpoint=endpoint method="post" target="#action" swap="innerHTML" label=btn_label %}
+                {% include "utils/buttons/primary_button.html" with endpoint=endpoint method="post" target="#action" swap="innerHTML" label="Aggiungi alla tua etichetta" %}
             </div>
             {% endif %}
         </div>
