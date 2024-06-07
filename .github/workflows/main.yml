@@ -27,7 +27,7 @@ jobs:
         run: doctl registry login --expiry-seconds 600
 
       - name: Build and push Docker images
-        run: docker-compose build && docker-compose push
+        run: touch .env && docker-compose build && docker-compose push
 
   deploy:
     needs: build
