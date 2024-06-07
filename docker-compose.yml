@@ -22,9 +22,6 @@ services:
       - '6379:6379'
   app:
     image: registry.digitalocean.com/parterre-cr/backend:latest
-    build:
-      context: .
-      dockerfile: docker/backend.Dockerfile
     restart: always
     env_file:
       - .env
@@ -57,9 +54,6 @@ services:
 
   worker:
     image: registry.digitalocean.com/parterre-cr/backend:latest
-    build:
-      context: .
-      dockerfile: docker/backend.Dockerfile
     restart: unless-stopped
     command: celery -A core worker -l INFO
     env_file:
@@ -69,9 +63,7 @@ services:
       - db
 
   beat:
-    build:
-      context: .
-      dockerfile: docker/backend.Dockerfile
+    image: registry.digitalocean.com/parterre-cr/backend:latest
     restart: unless-stopped
     command: celery -A core beat -l INFO
     volumes:
