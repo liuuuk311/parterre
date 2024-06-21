@@ -42,10 +42,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "core.middlewares.LogCSRFMiddleware"
+    "core.middlewares.LogCSRFMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    "core.middlewares.ForceDefaultLanguageMiddleware", # This will force the I18N machinery to always choose settings.LANGUAGE_CODE as the default initial language, unless another one is set via sessions or cookies
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -199,7 +198,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'DEBUG',
+            'level': 'INFO',
             'propagate': True,
         },
     },
