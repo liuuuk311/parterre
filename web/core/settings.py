@@ -184,3 +184,4 @@ TELEGRAM_TO_CHAT = env('TELEGRAM_TO_CHAT')
 TELEGRAM_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage?chat_id={TELEGRAM_TO_CHAT}&text="
 
 CSRF_TRUSTED_ORIGINS = ['https://parterremusic.com']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
