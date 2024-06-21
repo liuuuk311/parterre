@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "core.middlewares.LogCSRFMiddleware"
     "django.middleware.security.SecurityMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "core.middlewares.ForceDefaultLanguageMiddleware", # This will force the I18N machinery to always choose settings.LANGUAGE_CODE as the default initial language, unless another one is set via sessions or cookies
@@ -185,3 +186,21 @@ TELEGRAM_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage?ch
 
 CSRF_TRUSTED_ORIGINS = ['https://parterremusic.com']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
