@@ -43,11 +43,11 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
     "core.middlewares.ForceDefaultLanguageMiddleware", # This will force the I18N machinery to always choose settings.LANGUAGE_CODE as the default initial language, unless another one is set via sessions or cookies
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.locale.LocaleMiddleware", 
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
