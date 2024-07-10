@@ -8,11 +8,15 @@
             <p class="max-w-3xl mb-6 font-bold text-gray-900 lg:mb-8 md:text-lg lg:text-2xl dark:text-gray-400">
                 Parterre, la piattaforma che premia i tuoi gusti musicali!
             </p>
+      
+        </br>
+   
             <div class="flex flex-row gap-x-3 pb-12">
                 {% url 'signup' as sign_up_url %}
                 {% include "utils/buttons/primary_button.html" with label="Iscriviti" href=sign_up_url %}
             </div>
         </div>
+  
         <!--  
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
             <img src="https://parterre.fra1.cdn.digitaloceanspaces.com/public/ragazza_rosa_balla.png" alt="mockup">
