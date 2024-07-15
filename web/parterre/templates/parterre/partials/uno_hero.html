@@ -2,19 +2,32 @@
 <section class="bg-sky-200">
     <div class="grid container px-6 pt-12 mx-auto lg:gap-8 xl:gap-0 lg:pt-16 lg:pb-0 lg:grid-cols-12">
         <div class="mr-auto place-self-center lg:col-span-7">
-            <h1 class="max-w-2xl mb-4 text-3xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+            <h1 class="max-w-3xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-6xl xl:text-7xl dark:text-white">
                 DOVE ARTISTI E FAN VENGONO PREMIATI
             </h1>
-            <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-                Parterre, la nuova piattaforma che premia i tuoi gusti musicali.
+            <p class="max-w-3xl mb-6 font-bold text-gray-900 lg:mb-8 md:text-lg lg:text-2xl dark:text-gray-400">
+                Parterre, la piattaforma che premia i tuoi gusti musicali!
             </p>
+      
+        </br>
+   
             <div class="flex flex-row gap-x-3 pb-12">
                 {% url 'signup' as sign_up_url %}
                 {% include "utils/buttons/primary_button.html" with label="Iscriviti" href=sign_up_url %}
             </div>
         </div>
+  
+        <!--  
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
             <img src="https://parterre.fra1.cdn.digitaloceanspaces.com/public/ragazza_rosa_balla.png" alt="mockup">
         </div>
+        -->
+        <div class="lg:mt-0 lg:col-span-5 lg:flex">
+            <img src="https://parterre.fra1.cdn.digitaloceanspaces.com/public/ragazza_rosa_balla.png" alt="mockup">
+        </div>
+
+
+
+
     </div>
 </section>

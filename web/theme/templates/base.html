@@ -3,6 +3,15 @@
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}" class="{{ user.preferred_theme }}">
 	<head>
+        <!-- Google tag (gtag.js) -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWQ6V6XB8L"></script>
+            <script>
+                 window.dataLayer = window.dataLayer || [];
+                 function gtag(){dataLayer.push(arguments);}
+                 gtag('js', new Date());
+                 gtag('config', 'G-DWQ6V6XB8L');
+            </script>
+        <!-- END-Google tag (gtag.js) -->
         <title>
             {% block title %}
             {% endblock %}
